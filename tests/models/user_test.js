@@ -27,5 +27,18 @@ describe("User", function() {
         done();
       });
     });
+
+    it('should validate required attributes exist', function() {
+      // Should throw errors if attributes arent given to the create function
+      var user = {
+        username: 'name'
+      };
+
+      User.create(user, function(err, createdUser){
+        should.exist(err);
+        // console.log(err.errors);
+        done();
+      })
+    });
   });
 });
