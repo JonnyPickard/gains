@@ -30,5 +30,6 @@ var UserModel = mongoose.model('User', UserSchema);
 
 module.exports = UserModel;
 
+// Auto increment the user_id feild
 autoInc.initialize(mongoose.connection);
 UserSchema.plugin(autoInc.plugin, { model: 'User', feild: 'user_id' } );

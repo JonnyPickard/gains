@@ -1,8 +1,8 @@
-var utils  = require('../utils/mongodb_cleaner');
+var utils  = require('../../utils/mongodb_cleaner');
 var chai   = require('chai');
 var expect = chai.expect;
 var should = chai.should();
-var User   = require('../../app/models/user.model');
+var User   = require('../../../app/models/user.model');
 
 describe("User", function() {
 
