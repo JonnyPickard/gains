@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Schema   = mongoose.Schema;
+var bcrypt   = require('bcrypt');
 
 // User Schema
 var UserSchema = new Schema({
@@ -14,7 +15,17 @@ var UserSchema = new Schema({
   }
 });
 
+// Bcrypt to hash passwords
+UserSchema.methods.hashPassword = function(passwordRaw) {
+  return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
+};
+
+UserSchema.methods.comparePasswords = function(passwordRaw, passwordHash) {
+  return bcrypt.compareSync(passwordRaw, passwordHash);
+};
+
 // Exporting the User model
 var UserModel = mongoose.model('User', UserSchema);
+
 
 module.exports = UserModel;
