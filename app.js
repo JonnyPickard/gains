@@ -10,8 +10,7 @@ var config = require('./app/config/config');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, './app/views'));
-app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, '/app/views'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, './app/public', 'favicon.ico')));
@@ -20,13 +19,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './app/public')));
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
 
 //Mongoose connection
 //Connecting MongoDB using mongoose to our application
@@ -37,9 +29,12 @@ mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.db);
 });
 
-// uncomment after creating route
-// var index = require('./app/controllers/index');
-// app.use('/', index);
+//Creating routes
+var users   = require('./app/controllers/users.js');
+var profile = require('./app/controllers/profile.js');
+app.use('/users', users);
+app.use('/profile', profile);
+
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -20,7 +20,7 @@ if (arg === "u") {
   });
 } else if (arg === "f") {
   console.log(__dirname);
-  exec('protractor ./tests/e2e/protractor_conf --colors', function (error, stdout, stderr) {
+  exec('node ./node_modules/mocha/bin/mocha --recursive --colors ./tests/e2e', function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     console.log('error: ' + error);

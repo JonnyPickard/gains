@@ -21,7 +21,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "protractor": "^4.0.13",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "zombie": "^5.0.5"
   }
 }
