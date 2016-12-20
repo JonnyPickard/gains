@@ -1,7 +1,6 @@
-var config = require('../../app/config/config');
-var mongoose = require('mongoose');
-
-process.env.NODE_ENV = 'test';
+let config = require('../../app/config/config');
+let mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 beforeEach(function (done) {
 

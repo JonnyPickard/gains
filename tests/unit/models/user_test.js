@@ -1,8 +1,10 @@
-var utils  = require('../../utils/mongodb_cleaner');
-var chai   = require('chai');
-var expect = chai.expect;
-var should = chai.should();
-var User   = require('../../../app/models/user.model');
+process.env.NODE_ENV = 'test';
+
+var dbCleaner  = require('../../utils/mongodb_cleaner');
+var chai       = require('chai');
+var expect     = chai.expect;
+var should     = chai.should();
+var User       = require('../../../app/models/user.model');
 
 describe("User", function() {
 
@@ -22,7 +24,6 @@ describe("User", function() {
         expect(createdUser.username).to.equal('testName');
         expect(createdUser.email).to.equal('testemail@email.com');
         expect(createdUser.user_id).to.equal(1);
-        console.log(createdUser);
         done();
       });
     });
