@@ -18,22 +18,26 @@ var UserSchema = new Schema({
 });
 
 // Bcrypt to hash passwords
-UserSchema.methods.hashPassword = function(passwordRaw) {
-  return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
-};
+UserSchema.methods = {
 
-UserSchema.methods.comparePasswords = function(passwordRaw, passwordHash) {
-  return bcrypt.compareSync(passwordRaw, passwordHash);
+  hashPassword: function(passwordRaw) {
+    return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
+  },
+
+  comparePasswords: function(passwordRaw, passwordHash) {
+    return bcrypt.compareSync(passwordRaw, passwordHash);
+  }
+
 };
 
 UserSchema.pre('save', function(next) {
     var user = this;
 
-    // only hash the password if it has been modified (or is new)
+    // Only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) {
       return next()
     } else {
-      user.password = UserSchema.methods.hashPassword(user.password);
+      user.password = this.hashPassword(user.password);
       next();
     }
 });
