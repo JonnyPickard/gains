@@ -13,7 +13,7 @@ beforeEach(function (done) {
   }
 
   if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.test_db, function (err) {
+    mongoose.connect(config.db, function (err) {
       if (err) {
         throw err;
       }

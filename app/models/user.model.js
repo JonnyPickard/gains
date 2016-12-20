@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
-var bcrypt   = require('bcrypt');
-var autoInc  = require('mongoose-auto-increment');
+var mongoose        = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
+var Schema          = mongoose.Schema;
+var bcrypt          = require('bcrypt');
+var autoInc         = require('mongoose-auto-increment');
 
 // User Schema
 var UserSchema = new Schema({
@@ -17,7 +18,7 @@ var UserSchema = new Schema({
 });
 
 // Bcrypt to hash passwords
-var hashPassword = function(passwordRaw) {
+UserSchema.methods.hashPassword = function(passwordRaw) {
   return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
 };
 
@@ -32,7 +33,7 @@ UserSchema.pre('save', function(next) {
     if (!user.isModified('password')) {
       return next()
     } else {
-      user.password = hashPassword(user.password);
+      user.password = UserSchema.methods.hashPassword(user.password);
       next();
     }
 });
@@ -45,3 +46,4 @@ module.exports = UserModel;
 // Auto increment the user_id feild
 autoInc.initialize(mongoose.connection);
 UserSchema.plugin(autoInc.plugin, { model: 'User', field: 'user_id' } );
+UserSchema.plugin(uniqueValidator);

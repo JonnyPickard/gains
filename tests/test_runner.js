@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-var path = require("path");
+let path = require("path");
+function error() { return console.log("Please specify unit or feature spec using u or f\n") };
 
 if (process.argv.length < 3) {
-  return console.log("Please specify unit or feature spec using u or f\n")
+  error();
 }
 
-console.log(process.argv[2]);
-
-var arg = process.argv[2];
+var arg  = process.argv[2];
 var exec = require('child_process').exec
 
 if (arg === "u") {
@@ -26,5 +25,5 @@ if (arg === "u") {
     console.log('error: ' + error);
   });
 } else {
-  return console.log("Unknown error");
+  error();
 }

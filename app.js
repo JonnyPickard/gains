@@ -1,11 +1,12 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var config = require('./app/config/config');
+var express       = require('express');
+var mongoose      = require('mongoose');
+var path          = require('path');
+var favicon       = require('serve-favicon');
+var logger        = require('morgan');
+var cookieParser  = require('cookie-parser');
+var bodyParser    = require('body-parser');
+var config        = require('./app/config/config');
+const port        = process.env.PORT || 3000;
 
 var app = express();
 
@@ -21,6 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './app/public')));
 
 //Mongoose connection
+//Use node promises instead of mongoose
+mongoose.Promise = global.Promise;
+
 //Connecting MongoDB using mongoose to our application
 mongoose.connect(config.db);
 
@@ -46,5 +50,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(port);
+console.log('Listening on port ' + port);
 
 module.exports = app;

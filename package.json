@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "NODE_ENV=development node ./app.js",
     "test": "./tests/test_runner.js"
   },
   "dependencies": {
@@ -20,7 +20,9 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "database-cleaner": "^1.2.0",
     "mocha": "^3.2.0",
+    "mongoose-unique-validator": "^1.0.3",
     "sinon": "^1.17.6",
     "zombie": "^5.0.5"
   }

@@ -20,7 +20,6 @@ describe("User", function() {
         should.exist(createdUser);
 
         expect(createdUser.username).to.equal('testName');
-        expect(createdUser.password).to.equal('testPassword');
         expect(createdUser.email).to.equal('testemail@email.com');
         expect(createdUser.user_id).to.equal(1);
         console.log(createdUser);
