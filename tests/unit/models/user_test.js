@@ -36,7 +36,6 @@ describe("User", function() {
 
       User.create(user, function(err, createdUser){
         should.exist(err);
-        // console.log(err.errors);
         done();
       })
     });

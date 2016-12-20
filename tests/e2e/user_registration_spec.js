@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'test';
 
-let mongoose = require('mongoose');
 let User     = require('../../app/models/user.model');
 let server   = require('../../app');
 
@@ -10,17 +9,16 @@ Browser.localhost('gains.com', 3000);
 describe('User visits signup page', function() {
   const browser = new Browser();
 
-  beforeEach(function() {
+  afterEach(function() {
     return User.remove({}, function (err) {
       if (err) return handleError(err);
     });
   })
 
-  before(function(done) {
-    browser.visit('/users/signup', done);
-  });
-
-  describe('submits form', function() {
+  describe('Sign Up', function() {
+    before(function(done) {
+      browser.visit('/users/signup', done);
+    });
 
     before(function(done) {
       browser
@@ -30,11 +28,11 @@ describe('User visits signup page', function() {
         .pressButton('Sign Up', done);
     });
 
-    it('should be successful', function() {
+    it('Should be successful', function() {
       browser.assert.success();
     });
 
-    it('should see welcome page', function() {
+    it('Should be redirected to profile page', function() {
       browser.assert.text('title', 'Profile');
     });
   });
