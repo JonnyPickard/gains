@@ -7,11 +7,16 @@ const cookieParser  = require('cookie-parser');
 const bodyParser    = require('body-parser');
 const config        = require('./app/config/config');
 const port          = process.env.PORT || 3000;
+const exphbs        = require('express-handlebars');
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/app/views'));
+app.set('views', (__dirname + '/app/views'));
+app.engine('handlebars', exphbs({defaultLayout: 'layout',
+                                layoutsDir: __dirname + '/app/views/layouts'}));
+
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, './app/public', 'favicon.ico')));
@@ -35,9 +40,9 @@ mongoose.connection.on('connected', function () {
 
 //Creating routes
 var users   = require('./app/controllers/users.js');
-var profile = require('./app/controllers/profile.js');
+var index = require('./app/controllers/index.js');
 app.use('/users', users);
-app.use('/profile', profile);
+app.use('/', index);
 
 
 // error handler

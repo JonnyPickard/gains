@@ -1,5 +1,5 @@
 module.exports = function signup(browser, done) {
-  browser.visit('/users/signup', function() {
+  browser.visit('/users/register', function() {
     browser
     .fill('username', 'test_user')
     .fill('email',    'test@test.com')
