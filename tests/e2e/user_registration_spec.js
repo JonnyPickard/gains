@@ -3,6 +3,7 @@ process.env.PORT     = 3333;
 
 const User     = require('../../app/models/user.model');
 const server   = require('../../app');
+const signup   = require('./helpers/signup.js');
 
 const Browser = require('zombie');
 Browser.localhost('gains.com', 3333);
@@ -22,11 +23,7 @@ describe('User visits signup page', function() {
     });
 
     before(function(done) {
-      browser
-        .fill('username', 'test_user')
-        .fill('email',    'test@test.com')
-        .fill('password', 'password')
-        .pressButton('Sign Up', done);
+      signup(browser, done);
     });
 
     it('Should be successful', function() {
