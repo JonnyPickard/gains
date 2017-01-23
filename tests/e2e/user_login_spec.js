@@ -38,7 +38,7 @@ describe('User visits login page', function() {
     });
 
     it('Should be redirected to profile page', function() {
-      browser.assert.text('title', 'Profile');
+      browser.assert.text('title', 'index');
     });
   });
 });

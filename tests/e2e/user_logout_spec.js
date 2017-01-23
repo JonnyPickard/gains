@@ -31,7 +31,7 @@ describe('User clicks logout', function() {
     });
 
     it('Should be redirected to the Login page', function() {
-      browser.assert.text('title', 'Login');
+      browser.assert.text('title', 'login');
     });
   });
 });
