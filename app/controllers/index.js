@@ -3,7 +3,7 @@ var router  = express.Router();
 
 //Get profile page
 router.get('/', function(req, res, next) {
-  res.sendFile('profile.html', {root: './app/views'});
+  res.render('index');
 });
 
 module.exports = router;

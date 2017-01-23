@@ -1,21 +1,21 @@
-var express = require('express');
-var router  = express.Router();
-var User    = require('../models/user.model');
+const express = require('express');
+const router  = express.Router();
+const User    = require('../models/user.model');
 const rootUser = {root: './app/views/user'};
 
 //GET signup page.
-router.get('/signup', function(req, res) {
-  res.sendFile('signup.html', rootUser);
+router.get('/register', function(req, res) {
+  res.render('user/register');
 });
 
 //Post create new user
-router.post('/signup', function(req, res) {
+router.post('/register', function(req, res) {
   User.create(req.body, function(err) {
     if (err) {
       console.log(err);
-      res.redirect('/users/signup');
+      res.redirect('/users/register');
     } else {
-      res.redirect('/profile');
+      res.redirect('/');
     }
   });
 });
@@ -25,11 +25,11 @@ router.post('/logout', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.sendFile('login.html', rootUser)
+  res.render('user/login')
 });
 
 router.post('/login', function(req, res) {
-  res.redirect('/profile');
+  res.redirect('/');
 });
 
 module.exports = router;
