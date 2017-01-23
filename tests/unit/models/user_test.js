@@ -42,13 +42,13 @@ describe("User", function() {
   });
 
   describe('#hashPassword()', function(){
-  it('should return a hash of the password', function(done){
-    var password = ('secret');
-    var hashedPassword = User().hashPassword(password);
-    expect(password).not.to.equal(hashedPassword);
-    done();
+    it('should return a hash of the password', function(done){
+      var password = ('secret');
+      var hashedPassword = User().hashPassword(password);
+      expect(password).not.to.equal(hashedPassword);
+      done();
+    });
   });
-});
 
   describe('#comparePasswords()', function(){
     it('should successfully compare the raw and hashed passwords', function(){

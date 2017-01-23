@@ -1,8 +1,8 @@
-var mongoose        = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
-var Schema          = mongoose.Schema;
-var bcrypt          = require('bcrypt');
-var autoInc         = require('mongoose-auto-increment');
+const mongoose        = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
+const Schema          = mongoose.Schema;
+const bcrypt          = require('bcrypt');
+const autoInc         = require('mongoose-auto-increment');
 
 // User Schema
 var UserSchema = new Schema({
@@ -33,7 +33,7 @@ UserSchema.methods = {
 UserSchema.pre('save', function(next) {
     var user = this;
 
-    // Only hash the password if it has been modified (or is new)
+    // Only hash the password if it is new
     if (!user.isModified('password')) {
       return next()
     } else {

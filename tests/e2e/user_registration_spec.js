@@ -1,10 +1,11 @@
 process.env.NODE_ENV = 'test';
+process.env.PORT     = 3333;
 
-let User     = require('../../app/models/user.model');
-let server   = require('../../app');
+const User     = require('../../app/models/user.model');
+const server   = require('../../app');
 
 const Browser = require('zombie');
-Browser.localhost('gains.com', 3000);
+Browser.localhost('gains.com', 3333);
 
 describe('User visits signup page', function() {
   const browser = new Browser();

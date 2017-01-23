@@ -1,14 +1,14 @@
-var express       = require('express');
-var mongoose      = require('mongoose');
-var path          = require('path');
-var favicon       = require('serve-favicon');
-var logger        = require('morgan');
-var cookieParser  = require('cookie-parser');
-var bodyParser    = require('body-parser');
-var config        = require('./app/config/config');
-const port        = process.env.PORT || 3000;
+const express       = require('express');
+const mongoose      = require('mongoose');
+const path          = require('path');
+const favicon       = require('serve-favicon');
+const logger        = require('morgan');
+const cookieParser  = require('cookie-parser');
+const bodyParser    = require('body-parser');
+const config        = require('./app/config/config');
+const port          = process.env.PORT || 3000;
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '/app/views'));
