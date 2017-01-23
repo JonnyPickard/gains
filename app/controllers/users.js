@@ -3,21 +3,43 @@ const router  = express.Router();
 const User    = require('../models/user.model');
 const rootUser = {root: './app/views/user'};
 
-//GET signup page.
+// GET Register
 router.get('/register', function(req, res) {
   res.render('user/register');
 });
 
-//Post create new user
+// POST Register User
 router.post('/register', function(req, res) {
-  User.create(req.body, function(err) {
-    if (err) {
-      console.log(err);
-      res.redirect('/users/register');
-    } else {
-      res.redirect('/');
-    }
-  });
+  let username = req.body.username;
+  let email = req.body.email;
+  let password = req.body.password;
+  let password2 = req.body.password2;
+
+  // Validation
+  req.checkBody('username', 'Username is required').notEmpty();
+  req.checkBody('email', 'Email is required').notEmpty();
+  req.checkBody('email', 'Email is not valid').isEmail();
+  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
+  let errors = req.validationErrors();
+
+  if(errors) {
+    res.render('user/register', {
+      errors: errors
+    });
+  } else {
+    res.redirect('/');
+  }
+
+  // User.create(req.body, function(err) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.redirect('/users/register');
+  //   } else {
+  //     res.redirect('/');
+  //   }
+  // });
 });
 
 router.post('/logout', function(req, res) {
