@@ -9,7 +9,7 @@ This is an Instagram clone for gym goers built with NodeJS, ExpresssJS and Mongo
 Feature Checklist
 --------------
 
-1. <s>User login / registration / authentication
+1. <s>User login / registration / authentication</s>
 2. Upload photos to user homepage
 3. View all user photos stream page
 4. Endorse a photo
@@ -19,3 +19,17 @@ Feature Checklist
 8. Oauth login with facebook and google
 9. Upload / stream videos
 10. Responsive UI / front end magic
+
+Installation Instructions
+-------------------------
+
+Note: Requires user to have [Mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and [Nodejs](https://nodejs.org/en/download/) installed. Click on the links to download.
+
+In a new terminal window boot up mongodb by running ``$ mongod``
+
+1. Clone this repo.
+2. ``$ cd`` into directory.
+3. ``$ npm install`` to install dependencies.
+4. ``$ npm start`` to boot up a server and view on http://localhost:3000
+5. ``$ npm test f`` to run feature tests.
+6. ``$ npm test u`` to run unit tests.
