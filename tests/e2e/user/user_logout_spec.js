@@ -1,8 +1,8 @@
-const config   = require('./helpers/e2eConfig.js');
-const User     = require('../../app/models/user.model');
-const server   = require('../../app');
-const signup   = require('./helpers/signup.js');
-const logout   = require('./helpers/logout.js');
+const config   = require('../helpers/e2eConfig.js');
+const User     = require('../../../app/models/user.model');
+const server   = require('../../../app');
+const signup   = require('../helpers/signup.js');
+const logout   = require('../helpers/logout.js');
 
 const Browser = require('zombie');
 Browser.localhost('gains.com', 3333);
