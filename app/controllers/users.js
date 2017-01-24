@@ -21,13 +21,15 @@ router.post('/register', function(req, res) {
       errors: errors
     });
   } else {
-    User.create(req.body, function(err) {
+    User.create(req.body, function(err, user) {
       if (err) {
         req.flash('error_msg', 'A user with these details already exists');
         res.redirect('register');
       } else {
-        req.flash('success_msg', 'You are registered and can now login');
-        res.redirect('/');
+        passport.authenticate('local')(req, res, function () {
+          req.flash('success_msg', 'Welcome! You have successfully registered');
+          res.redirect('/');
+        });
       }
     });
   }
@@ -35,12 +37,16 @@ router.post('/register', function(req, res) {
 
 // POST Logout
 router.post('/logout', function(req, res) {
-  res.redirect('/users/login')
+  req.logout();
+
+  req.flash('success_msg', 'Successfully logged out');
+
+  res.redirect('/users/login');
 });
 
 // GET Login
 router.get('/login', function(req, res) {
-  res.render('user/login')
+  res.render('user/login');
 });
 
 // Passport local strategy
