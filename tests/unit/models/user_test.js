@@ -52,19 +52,23 @@ describe("User", function() {
 
   describe('#comparePasswords()', function(){
     it('should successfully compare the raw and hashed passwords', function(){
-      var password = ('secret');
-      var hashedPassword = User().hashPassword(password);
+      let password = ('secret');
+      let hashedPassword = User().hashPassword(password);
 
-      expect(User().comparePasswords(password, hashedPassword)).to.equal(true);
+      User().comparePasswords(password, hashedPassword, function(err, isMatch){
+        expect(isMatch).to.equal(true);
+      });
     });
 
     it('should unsuccessfully compare a fake and hashed password', function(){
-      var password = ('secret');
-      var fakePassword = ('fakePassword');
+      let password = ('secret');
+      let fakePassword = ('fakePassword');
 
-      var hashedPassword = User().hashPassword(password);
+      let hashedPassword = User().hashPassword(password);
 
-      expect(User().comparePasswords(fakePassword, hashedPassword)).to.equal(false);
+      User().comparePasswords(fakePassword, hashedPassword, function(err, isMatch){
+        expect(isMatch).to.equal(false);
+      });
     });
   });
 });

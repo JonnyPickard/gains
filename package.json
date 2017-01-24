@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app.js",
-    "test": "./tests/test_runner.js"
+    "test": "./scripts/test_runner.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.1",
@@ -16,19 +16,17 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.0",
     "express-validator": "^3.1.2",
-    "jade": "~1.11.0",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
-    "serve-favicon": "~2.3.0",
-    "sinon-mongoose": "^1.3.0"
+    "passport-local": "*",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "database-cleaner": "^1.2.0",
     "mocha": "^3.2.0",
     "mongoose-unique-validator": "^1.0.3",
-    "sinon": "^1.17.6",
     "zombie": "^5.0.5"
   }
 }

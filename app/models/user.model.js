@@ -24,10 +24,21 @@ UserSchema.methods = {
     return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
   },
 
-  comparePasswords: function(passwordRaw, passwordHash) {
-    return bcrypt.compareSync(passwordRaw, passwordHash);
-  }
+  comparePasswords: function(passwordRaw, passwordHash, callback) {
+    bcrypt.compare(passwordRaw, passwordHash, function(err, isMatch){
+      if(err) throw err;
+      callback(null, isMatch);
+    });
+  },
 
+  getUserByUsername: function(username, callback) {
+    let query = {username: username};
+    UserModel.findOne(query, callback);
+  },
+
+  getUserById: function(id, callback){
+    UserModel.findById(id, callback);
+  }
 };
 
 UserSchema.pre('save', function(next) {
