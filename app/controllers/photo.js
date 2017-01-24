@@ -2,11 +2,12 @@ const express = require('express');
 const router  = express.Router();
 const Photo   = require('../models/photo.model');
 
-//Get profile page
+// GET Upload Photo
 router.get('/upload', function(req, res, next) {
-  res.render('image/upload');
+  res.render('photo/upload');
 });
 
+// POST crete photo
 router.post('/upload', function(req, res, next) {
   let userId = res.locals.user.user_id;
   let photoName = req.body.photo_name;

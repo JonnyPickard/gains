@@ -1,1 +1,29 @@
 <title>index</title>
+{{#if user}}
+  <h2 class="page-header">Most Recent Uploads</h2>
+  {{# each photos }}
+  <ul class="list-group">
+    <li class="list-group-item">
+      Image Title: {{photo_name}}
+    </li>
+  </ul>
+  {{/each}}
+{{else}}
+<div class="links container">
+  <div class="text-center">
+  <h2 class="page-header">Welcome to Gains</h2>
+    <div class="login-link">
+      <br />
+      Existing User?
+      <br />
+      <a href="users/login">Log In</a>
+    </div>
+    <div class="register-link">
+      <br />
+      New User?
+      <br />
+      <a href="users/register">Sign Up</a>
+    </div>
+  </div>
+</div>
+{{/if}}

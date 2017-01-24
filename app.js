@@ -87,10 +87,10 @@ mongoose.connection.on('connected', function () {
 // Routes / Controllers
 let users   = require('./app/controllers/users.js');
 let index = require('./app/controllers/index.js');
-let image = require('./app/controllers/image.js');
+let photo = require('./app/controllers/photo.js');
 app.use('/users', users);
 app.use('/', index);
-app.use('/image', image);
+app.use('/photo', photo);
 
 
 // error handler

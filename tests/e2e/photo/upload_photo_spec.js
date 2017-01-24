@@ -26,7 +26,7 @@ describe('User visits photo upload page', function() {
     });
 
     before(function(done) {
-      browser.visit('/image/upload', function() {
+      browser.visit('/photo/upload', function() {
         browser.fill('photo_name', 'test_photo')
         .pressButton('Upload', done);
       });
