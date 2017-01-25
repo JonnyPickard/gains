@@ -13,6 +13,7 @@ const expressValidator = require('express-validator');
 const flash         = require('connect-flash');
 const passport      = require('passport');
 const router        = require('./app/router/router');
+const setGlobals    = require('./app/helpers/global_vars');
 
 const app = express();
 
@@ -64,14 +65,8 @@ app.use(expressValidator({
 // Connect flash
 app.use(flash());
 
-// Global vars
-app.use(function(req, res, next){
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
-  next();
-});
+// Set Global Vars
+setGlobals(app);
 
 //Mongoose connection
 //Use node promises instead of mongoose
