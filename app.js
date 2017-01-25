@@ -12,6 +12,7 @@ const session       = require('express-session');
 const expressValidator = require('express-validator');
 const flash         = require('connect-flash');
 const passport      = require('passport');
+const router        = require('./app/router/router');
 
 const app = express();
 
@@ -84,14 +85,8 @@ mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.db);
 });
 
-// Routes / Controllers
-let users   = require('./app/controllers/users.js');
-let index = require('./app/controllers/index.js');
-let photo = require('./app/controllers/photo.js');
-app.use('/users', users);
-app.use('/', index);
-app.use('/photo', photo);
-
+// Instantiate Routes
+router(app);
 
 // error handler
 app.use(function(err, req, res, next) {

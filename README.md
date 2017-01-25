@@ -23,12 +23,12 @@ Feature Checklist
 Installation Instructions
 -------------------------
 
-Note: Requires user to have [Mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and [Nodejs](https://nodejs.org/en/download/) installed. Click on the links to download.
+Note: Requires [Mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and [Nodejs](https://nodejs.org/en/download/). Click on the links to download.
 
 In a new terminal window boot up mongodb by running ``$ mongod``
 
 1. Clone this repo.
-2. ``$ cd`` into directory.
+2. ``$ cd gains`` into directory.
 3. ``$ npm install`` to install dependencies.
 4. ``$ npm start`` to boot up a server and view on http://localhost:3000
 5. ``$ npm test f`` to run feature tests.
