@@ -21,8 +21,7 @@ if (arg === "u") {
   exec("node " + unitTestPath, function (error, stdout, stderr) {
     logOutput(stdout, error, stderr)
     if(stderr) {
-      console.log(stderr)
-      process.exit(1);
+      console.log(stderr);
     }
     exec("node " + featureTestPath, function (error, stdout, stderr) {
       logOutput(stdout, error, stderr)
