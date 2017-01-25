@@ -6,14 +6,20 @@ const autoInc         = require('mongoose-auto-increment');
 
 // User Schema
 var UserSchema = new Schema({
-  username:   { type: String, required: [true, 'Username required'], unique: true },
-  email:      { type: String, required: [true, 'User email address required'], unique: true },
-  password:   { type: String, required: [true, 'User password required'] },
+  username:   { type: String, unique: true },
+  email:      { type: String, unique: true },
+  password:   { type: String },
   user_id:    { type: Number, default: 1 },
   created_at: {
     type: Date,
     required: [true, 'User created at required'],
     default: Date.now
+  },
+  facebook: {
+    id: String,
+    token: String,
+    email: String,
+    name: String
   }
 });
 

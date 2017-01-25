@@ -83,6 +83,9 @@ mongoose.connection.on('connected', function () {
 // Instantiate Routes
 router(app);
 
+// Init Passport
+const passportInit = require('./app/config/passport.js')(passport); 
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

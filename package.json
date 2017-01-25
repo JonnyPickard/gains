@@ -21,6 +21,7 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-local": "*",
+    "passport-facebook": "*",
     "s3": "^4.4.0",
     "serve-favicon": "~2.3.0",
     "mongoose-unique-validator": "^1.0.3"
