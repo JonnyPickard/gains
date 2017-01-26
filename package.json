@@ -18,13 +18,13 @@
     "express-validator": "^3.1.2",
     "mongoose": "^4.7.8",
     "mongoose-auto-increment": "^5.0.1",
+    "mongoose-unique-validator": "^1.0.3",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
-    "passport-local": "*",
     "passport-facebook": "*",
+    "passport-local": "*",
     "s3": "^4.4.0",
-    "serve-favicon": "~2.3.0",
-    "mongoose-unique-validator": "^1.0.3"
+    "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
