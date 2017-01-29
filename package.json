@@ -7,6 +7,7 @@
     "test": "./scripts/test_runner.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.9.0",
     "bcryptjs": "*",
     "body-parser": "~1.15.2",
     "connect-flash": "^0.1.1",
@@ -23,7 +24,6 @@
     "passport": "^0.3.2",
     "passport-facebook": "*",
     "passport-local": "*",
-    "s3": "^4.4.0",
     "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
