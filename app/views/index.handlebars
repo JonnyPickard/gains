@@ -1,33 +1,17 @@
 <title>index</title>
 {{#if user}}
-  <div class="container">
+  <div class="container" style="max-width: 550px;">
   <h2 class="page-header">Most Recent Uploads</h2>
   {{# each photos }}
     <ul class="list-group">
       <li class="list-group-item">
         <span class="img-title text-center"><h3>{{photo_name}}</h3></span>
         <hr size="4"/>
-        <img class="img-responsive" style="margin: 0 auto; max-width:500px; box-shadow: 1px 1px 1px #888888;" src={{photo_url}} />
+        <img class="center-block img-responsive" style="box-shadow: 1px 1px 1px #888888;" src={{photo_url}} />          
       </li>
     </ul>
   {{/each}}
   </div>
 {{else}}
-<div class="links container">
-  <div class="text-center">
-  <h2 class="page-header">Welcome to Gains</h2>
-    <div class="login-link">
-      <br />
-      Existing User?
-      <br />
-      <a href="users/login">Log In</a>
-    </div>
-    <div class="register-link">
-      <br />
-      New User?
-      <br />
-      <a href="users/register">Sign Up</a>
-    </div>
-  </div>
-</div>
+  <script>location.replace("/users/login");</script>
 {{/if}}
