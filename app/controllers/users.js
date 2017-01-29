@@ -53,7 +53,7 @@ router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/users/login',
-    failureFlash: true
+    // failureFlash: true   Was sending flash [Object object] after success
   }),
   function(req, res){
     res.redirect('/');
