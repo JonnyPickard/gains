@@ -11,16 +11,18 @@ This is an Instagram clone for gym goers built with NodeJS, ExpresssJS and Mongo
 Feature Checklist
 --------------
 
-1. <s>User login / registration / authentication</s>
-2. Upload photos to user homepage
-3. View all user photos stream page
-4. Endorse a photo
-5. Comment on a photo
-6. Endorse a comment
-7. Comment on a comment
-8. Oauth login with facebook and google
-9. Upload / stream videos
-10. Responsive UI / front end magic
+- <s>User login / registration / authentication</s>
+- <s>Upload photos</s>
+- <s>View all user photos stream page</s>
+- <s>Oauth login with facebook</s>
+- Oauth login with google
+- User homepage for RUD existing photos
+- Endorse a photo
+- Comment on a photo
+- Endorse a comment
+- Comment on a comment
+- Upload / stream videos
+- Responsive UI / front end magic
 
 Installation Instructions
 -------------------------
@@ -33,5 +35,6 @@ In a new terminal window boot up mongodb by running ``$ mongod``
 2. ``$ cd gains`` into directory.
 3. ``$ npm install`` to install dependencies.
 4. ``$ npm start`` to boot up a server and view on http://localhost:3000
-5. ``$ npm test f`` to run feature tests.
-6. ``$ npm test u`` to run unit tests.
+5. ``$ npm test`` to run all tests.
+  - ``$ npm test f`` to run feature tests.
+  - ``$ npm test u`` to run unit tests.
