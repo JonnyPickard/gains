@@ -2,7 +2,8 @@ Gains
 =====
 
 http://gains-app.herokuapp.com
-Note: Currently experiencing a bug with mongodb deployment/ configuration on heroku. I am aiming to have this fixed asap so check back soon!
+
+Note: There currently is a bug with the mongoose-auto-increment package when using heroku which is somehow deleting the user_id field and therefor preventing picture uploads. I am working to create my own solution currently. Sorry for any inconvenience.  
 
 About
 -----

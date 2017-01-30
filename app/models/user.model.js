@@ -4,12 +4,16 @@ const Schema          = mongoose.Schema;
 const bcrypt          = require('bcryptjs');
 const autoInc         = require('mongoose-auto-increment');
 
+mongoose.Promise = global.Promise;
+
 // User Schema
 var UserSchema = new Schema({
-  username:   { type: String },
-  email:      { type: String },
-  password:   { type: String },
-  user_id:    { type: Number, default: 1 },
+  local: {
+    userId:     { type: Number, default: 1 },
+    username:   { type: String },
+    email:      { type: String},
+    password:   { type: String },
+  },
   created_at: {
     type: Date,
     required: [true, 'User created at required'],
@@ -36,11 +40,8 @@ UserSchema.methods = {
     return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
   },
 
-  comparePasswords: function(passwordRaw, passwordHash, callback) {
-    bcrypt.compare(passwordRaw, passwordHash, function(err, isMatch){
-      if(err) throw err;
-      callback(null, isMatch);
-    });
+  validPassword: function(password) {
+    return bcrypt.compare(password, this.local.password);
   },
 
   getUserByUsername: function(username, callback) {
@@ -53,24 +54,12 @@ UserSchema.methods = {
   }
 };
 
-UserSchema.pre('save', function(next) {
-    var user = this;
-
-    // Only hash the password if it is new
-    if (!user.isModified('password')) {
-      return next()
-    } else {
-      user.password = this.hashPassword(user.password);
-      next();
-    }
-});
 
 // Exporting the User model
 var UserModel = mongoose.model('User', UserSchema);
 
-module.exports = UserModel;
-
-// Auto increment the user_id feild
+// Auto increment the userId feild
 autoInc.initialize(mongoose.connection);
-UserSchema.plugin(autoInc.plugin, { model: 'User', field: 'user_id' } );
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(autoInc.plugin, { model: 'User', field: 'local.userId' } );
+
+module.exports = UserModel;

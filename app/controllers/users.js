@@ -2,7 +2,6 @@ const User    = require('../models/user.model');
 const express = require('express');
 const router  = express.Router();
 const passport = require('passport');
-const validator = require('./helpers/validator');
 const userModel = new User();
 
 // GET Register
@@ -11,34 +10,16 @@ router.get('/register', function(req, res) {
 });
 
 // POST Register User
-router.post('/register', function(req, res) {
-  let errors = validator(req);
-
-  if(errors) {
-    res.render('user/register', {
-      errors: errors
-    });
-  } else {
-    User.create(req.body, function(err, user) {
-      if (err) {
-        req.flash('error_msg', 'A user with these details already exists');
-        res.redirect('register');
-      } else {
-        passport.authenticate('local')(req, res, function () {
-          req.flash('success_msg', 'Welcome! You have successfully registered');
-          res.redirect('/');
-        });
-      }
-    });
-  }
-});
+router.post('/register', passport.authenticate('local-signup', {
+		successRedirect: '/',
+		failureRedirect: '/users/register',
+		failureFlash: true
+}));
 
 // POST Logout
 router.post('/logout', function(req, res) {
   req.logout();
-
   req.flash('success_msg', 'Successfully logged out');
-
   res.redirect('/users/login');
 });
 
@@ -49,15 +30,10 @@ router.get('/login', function(req, res) {
 
 
 // POST Login
-router.post('/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    // failureFlash: true   Was sending flash [Object object] after success
-  }),
-  function(req, res){
-    res.redirect('/');
-  }
-);
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect: '/',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}));
 
 module.exports = router;

@@ -2,42 +2,80 @@ const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const secrets = require('./secrets/secrets');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const formValidator = require('./validator_signup_form');
 
 const User    = require('../models/user.model');
 const userModel = new User();
 
 module.exports = function(passport) {
-  // Passport local strategy
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-      userModel.getUserByUsername(username, function(err, user) {
-        if(err) throw err;
-        if(!user){
-          return done(null, false, {message: 'Unknown User'});
-        }
 
-        userModel.comparePasswords(password, user.password, function(err, isMatch){
-          if(err) throw err;
+  // Passport Local Login strategy
+  passport.use('local-login', new LocalStrategy({
+			usernameField: 'username',
+      passwordField: 'password',
+      emailField: 'email',
+			passReqToCallback: true
+    },
+    function(req, username, password, done){
+			process.nextTick(function(){
+				User.findOne({ 'local.username': username}, function(err, user){
+					if(err)
+						return done(err);
+					if(!user)
+						return done(null, false, req.flash('error_msg', 'No user found'));
+					if(!user.validPassword(password)){
+						return done(null, false, req.flash('error_msg', 'Invalid password'));
+					}
+					return done(null, user);
+				});
+			});
+		}
+	));
 
-          if(isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, {message: 'Invalid password'});
-          }
-        });
-      });
-    }
-  ));
+  // Passport Local SignUp Strategy
+  passport.use('local-signup', new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password',
+    emailField: 'email',
+    passReqToCallback: true
+  },
+	function(req, username, password, done){
+    let errors = formValidator(req);
+    if(errors) { return done(errors); }
 
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+		process.nextTick(function(){
+			User.findOne({'local.username': username}, function(err, user){
+				if(err)
+					return done(err);
+				if(user){
+					return done(null, false, req.flash('error_msg', 'A user with these details already exists'));
+				}
+				if(!req.user) {
+					var newUser = new User();
+					newUser.local.username = username;
+					newUser.local.email = req.body.email;
+					newUser.local.password = newUser.hashPassword(password);
 
-  passport.deserializeUser(function(id, done) {
-    userModel.getUserById(id, function(err, user) {
-      done(err, user);
-    });
-  });
+					newUser.save(function(err){
+						if(err)
+							throw err;
+						return done(null, newUser);
+					})
+				} else {
+					var user = req.user;
+					user.local.username = req.body.email;
+					user.local.password = user.hashPassword(password);
+
+					user.save(function(err){
+						if(err)
+							throw err;
+						return done(null, user);
+					})
+				}
+			})
+
+		});
+	}));
 
   passport.use(new FacebookStrategy({
 	    clientID: secrets.facebookAppId || "1860458620897454",
@@ -61,7 +99,6 @@ module.exports = function(passport) {
           				throw err;
           			return done(null, newUser);
           		})
-          		console.log(profile);
           	}
           });
         });
@@ -93,11 +130,22 @@ module.exports = function(passport) {
 	    						throw err;
 	    					return done(null, newUser);
 	    				})
-	    				console.log(profile);
 	    			}
 	    		});
 	    	});
 	    }
 
 	));
+
+  // Passport User serialization
+  passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    userModel.getUserById(id, function(err, user) {
+      done(err, user);
+    });
+  });
+
 }

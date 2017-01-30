@@ -11,10 +11,10 @@ router.get('/upload', function(req, res, next) {
 
 // POST create photo
 router.post('/upload', function(req, res, next) {
-  let userId = res.locals.user.user_id;
+  let userId = res.locals.user.userId;
   let photoName = req.body.photo_name;
   let photoURL = req.body.photo_url
-  Photo.create({photo_name: photoName, user_id: userId, photo_url: photoURL }, function(err, photo) {
+  Photo.create({photo_name: photoName, userId: userId, photo_url: photoURL }, function(err, photo) {
     if(err) {
       console.log(err);
       throw err;
