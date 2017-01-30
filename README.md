@@ -2,6 +2,7 @@ Gains
 =====
 
 http://gains-app.herokuapp.com
+Note: Currently experiencing a bug with mongodb deployment/ configuration on heroku. I am aiming to have this fixed asap so check back soon!
 
 About
 -----
@@ -15,7 +16,7 @@ Feature Checklist
 - <s>Upload photos</s>
 - <s>View all user photos stream page</s>
 - <s>Oauth login with facebook</s>
-- Oauth login with google
+- <s>Oauth login with google</s>
 - User homepage for RUD existing photos
 - Endorse a photo
 - Comment on a photo
