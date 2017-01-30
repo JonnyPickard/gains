@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, './app/public')));
-app.use(favicon(path.join(__dirname, './app/public/favicon.ico')));
+app.use(favicon(path.join(__dirname, './app/public/favicon.png')));
 
 // Express sessions set secret
 app.use(session({
