@@ -6,8 +6,8 @@ const autoInc         = require('mongoose-auto-increment');
 
 // User Schema
 var UserSchema = new Schema({
-  username:   { type: String, unique: true },
-  email:      { type: String, unique: true },
+  username:   { type: String },
+  email:      { type: String },
   password:   { type: String },
   user_id:    { type: Number, default: 1 },
   created_at: {
@@ -22,10 +22,10 @@ var UserSchema = new Schema({
     name: String
   },
   google: {
-  id: String,
-  token: String,
-  email: String,
-  name: String
+    id: String,
+    token: String,
+    email: String,
+    name: String
   }
 });
 
