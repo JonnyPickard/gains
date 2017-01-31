@@ -67,10 +67,6 @@ app.use(flash());
 // Set Global Vars
 setGlobals(app);
 
-//Mongoose connection
-//Use node promises instead of mongoose
-mongoose.Promise = global.Promise;
-
 //Connecting MongoDB using mongoose to our application
 mongoose.connect(config.db);
 
@@ -78,6 +74,10 @@ mongoose.connect(config.db);
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.db);
 });
+
+//Mongoose connection
+//Use node promises instead of mongoose
+mongoose.Promise = global.Promise;
 
 // Instantiate Routes
 router(app);
