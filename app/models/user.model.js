@@ -2,17 +2,15 @@ const mongoose        = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Schema          = mongoose.Schema;
 const bcrypt          = require('bcryptjs');
-const autoInc         = require('mongoose-auto-increment');
-
-mongoose.Promise = global.Promise;
+const autoIncrement   = require('mongoose-auto-increment');
 
 // User Schema
 var UserSchema = new Schema({
+  userId:     { default: 0 },
   local: {
-    userId:     { type: Number, default: 1 },
     username:   { type: String },
     email:      { type: String},
-    password:   { type: String },
+    password:   { type: String }
   },
   created_at: {
     type: Date,
@@ -45,8 +43,7 @@ UserSchema.methods = {
   },
 
   getUserByUsername: function(username, callback) {
-    let query = {username: username};
-    UserModel.findOne(query, callback);
+    UserModel.findOne({username: username}, callback);
   },
 
   getUserById: function(id, callback){
@@ -54,12 +51,11 @@ UserSchema.methods = {
   }
 };
 
+// Auto increment the userId field
+autoIncrement.initialize(mongoose.connection);
+UserSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'userId' } );
 
 // Exporting the User model
 var UserModel = mongoose.model('User', UserSchema);
-
-// Auto increment the userId feild
-autoInc.initialize(mongoose.connection);
-UserSchema.plugin(autoInc.plugin, { model: 'User', field: 'local.userId' } );
 
 module.exports = UserModel;

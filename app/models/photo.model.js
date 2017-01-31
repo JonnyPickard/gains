@@ -5,8 +5,8 @@ const autoInc         = require('mongoose-auto-increment');
 // Photo Schema
 let PhotoSchema = new Schema({
   photo_name: { type: String, required: [true, 'Photo name required'] },
-  userId:    { type: Number, required: [true, 'User ID Required'] },
-  photo_id:   { type: Number, default: 1, unique: true },
+  userId:     { type: Number, required: [true, 'User ID Required'] },
+  photoId:    { type: Number, default: 0, unique: true },
   photo_url:  { type: String, required: [true, 'Photo URL required'] },
   created_at: {
     type: Date,
@@ -15,10 +15,11 @@ let PhotoSchema = new Schema({
   }
 });
 
+// Auto increment the photoId field
+autoInc.initialize(mongoose.connection);
+PhotoSchema.plugin(autoInc.plugin, { model: 'Photo', field: 'photoId' } );
+
 // Exporting the User model
 let PhotoModel = mongoose.model('Photo', PhotoSchema);
 
 module.exports = PhotoModel;
-
-autoInc.initialize(mongoose.connection);
-PhotoSchema.plugin(autoInc.plugin, { model: 'Photo', field: 'photo_id' } );
