@@ -1,4 +1,6 @@
 module.exports = {
+
+    error: true,
     /**
      * After all the tests are run, evaluate if there were errors and exit appropriately.
      *
@@ -9,6 +11,14 @@ module.exports = {
 
     // Can sometimes bug out and exit before tests have been run
     after: function(done) {
-      done(process.exit(0));
+      this.error === true ? process.exit(1) : process.exit(0);
+    },
+    reporter: function(results) {
+        if ((typeof(results.failed) === 'undefined' || results.failed === 0) &&
+        (typeof(results.error) === 'undefined' || results.error === 0)) {
+            this.error = true;
+        } else {
+            this.erorr = false;
+        }
     }
 };

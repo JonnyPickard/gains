@@ -13,18 +13,17 @@ if (arg === "u") {
     logOutput(stdout, error, stderr)
   });
 } else if (arg === "f") {
-  exec(featureTestPath, function (error, stdout, stderr) {
+  exec("node " + featureTestPath, function (error, stdout, stderr) {
     logOutput(stdout, error, stderr)
+    // exec("curl -s -L http://localhost:4444/selenium-server/driver?cmd=shutDownSeleniumServer > /dev/null 2>&1");
   });
 } else {
-  console.error(err);
   exec("node " + unitTestPath, function (error, stdout, stderr) {
     logOutput(stdout, error, stderr)
-    if(stderr) {
-      console.log(stderr);
-    }
+
     exec("node " + featureTestPath, function (error, stdout, stderr) {
       logOutput(stdout, error, stderr)
+      // exec("curl -s -L http://localhost:4444/selenium-server/driver?cmd=shutDownSeleniumServer > /dev/null 2>&1");
     });
   });
 }

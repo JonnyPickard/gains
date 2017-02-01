@@ -5,9 +5,9 @@
 
   <testsuite name="user_login_spec"
     errors="0" failures="0" hostname="" id="" package="user_login_spec" skipped="0"
-    tests="1" time="4.701" timestamp="Wed, 01 Feb 2017 21:21:39 GMT">
+    tests="1" time="4.424" timestamp="Thu, 02 Feb 2017 16:59:50 GMT">
   
-    <testcase name="User Log In is successful" time="4.701" assertions="7">
+    <testcase name="User Log In is successful" time="4.424" assertions="7">
 
     
 
