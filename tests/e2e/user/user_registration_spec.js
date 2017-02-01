@@ -1,32 +1,22 @@
-const config   = require('../helpers/e2eConfig.js');
+require('../helpers/config/e2e.js');
+const config   = require('../../nightwatch.config.js');
 const User     = require('../../../app/models/user.model');
 const server   = require('../../../app');
-const signup   = require('../helpers/signup.js');
+const signup   = require('../helpers/users/signup.js');
+const DBCleaner = require('../helpers/cleanDB');
 
-const Browser = require('zombie');
-Browser.localhost('gains.com', 3333);
+module.exports = {
 
-describe('User visits signup page', function() {
-  const browser = new Browser();
+  'User Registration is successful': function(browser) {
+    signup(browser);
+  },
 
-  afterEach(function() {
-    return User.remove({}, function (err) {
-      if (err) return handleError(err);
-    });
-  })
+  afterEach: function(done) {
+    DBCleaner(User, done);
+  },
 
-  describe('Sign Up', function() {
-
-    before(function(done) {
-      signup(browser, done);
-    });
-
-    it('Should be successful', function() {
-      browser.assert.success();
-    });
-
-    it('Should be redirected to profile page', function() {
-      browser.assert.text('title', 'index');
-    });
-  });
-});
+  after: function(browser) {
+    browser
+      .end();
+  }
+}

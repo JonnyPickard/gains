@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="user_logout_spec"
+    errors="0" failures="1" hostname="" id="" package="user_logout_spec" skipped="0"
+    tests="1" time="3.000" timestamp="Wed, 01 Feb 2017 20:14:13 GMT">
+  
+    <testcase name="User Log Out is successful" time="3.000" assertions="4">
+
+    
+
+    
+
+      <failure message="Testing if the page title equals &quot;index&quot;.">    at signup (/Users/jonny/projects/gains/tests/e2e/helpers/users/signup.js:13:13)
+    at Object.before (/Users/jonny/projects/gains/tests/e2e/user/user_logout_spec.js:42:5)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickDomainCallback (internal/process/next_tick.js:122:9)</failure>
+
+    
+    </testcase>
+  
+  
+  </testsuite>
+</testsuites>

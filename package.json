@@ -9,6 +9,7 @@
   "dependencies": {
     "aws-sdk": "^2.9.0",
     "bcryptjs": "*",
+    "bluebird": "^3.4.7",
     "body-parser": "~1.15.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
@@ -32,6 +33,7 @@
     "database-cleaner": "^1.2.0",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.12",
+    "phantomjs-prebuilt": "^2.1.14",
     "selenium-download": "^2.0.9",
     "zombie": "^5.0.5"
   }
