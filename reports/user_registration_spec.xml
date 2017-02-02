@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="user_registration_spec"
+    errors="1" failures="0" hostname="" id="" package="user_registration_spec" skipped="0"
+    tests="1" time="0.01300" timestamp="Wed, 01 Feb 2017 16:38:58 GMT">
+  
+    <testcase name="User Registration is successful" time="0.01300" assertions="0">
+    </testcase>
+      <system-err>
+          Error while running [User Registration Spec / User Registration is successful]:
+
+  Error: listen EADDRINUSE :::3333
+    at Object.exports._errnoException (util.js:1022:11)
+    at exports._exceptionWithHostPort (util.js:1045:20)
+    at Server._listen2 (net.js:1262:14)
+    at listen (net.js:1298:10)
+    at Server.listen (net.js:1376:9)
+    at Function.listen (/Users/jonny/projects/gains/node_modules/express/lib/application.js:617:24)
+    at Object.&lt;anonymous&gt; (/Users/jonny/projects/gains/app.js:99:5)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.&lt;anonymous&gt; (/Users/jonny/projects/gains/tests/e2e/user/user_registration_spec.js:4:18)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+      </system-err>
+  
+  
+  </testsuite>
+</testsuites>

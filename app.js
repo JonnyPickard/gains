@@ -15,6 +15,9 @@ const passport      = require('passport');
 const router        = require('./app/router/router');
 const setGlobals    = require('./app/helpers/global_vars');
 
+//Use node promises instead of mongoose
+mongoose.Promise = require('bluebird');
+
 const app = express();
 
 // View engine setup
@@ -68,6 +71,7 @@ app.use(flash());
 setGlobals(app);
 
 //Connecting MongoDB using mongoose to our application
+//Mongoose connection
 mongoose.connect(config.db);
 
 //This callback will be triggered once the connection is successfully established to MongoDB
@@ -75,9 +79,6 @@ mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.db);
 });
 
-//Mongoose connection
-//Use node promises instead of mongoose
-mongoose.Promise = global.Promise;
 
 // Instantiate Routes
 router(app);
