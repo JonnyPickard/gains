@@ -14,6 +14,7 @@ module.exports = {
       "selenium_host": "localhost",
       "silent": true,
       "sync_test_names": true,
+      "firefox_profile": false,
       "screenshots": {
         "enabled": false,
         "path": ""
