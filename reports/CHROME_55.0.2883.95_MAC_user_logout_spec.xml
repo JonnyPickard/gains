@@ -5,9 +5,9 @@
 
   <testsuite name="user_logout_spec"
     errors="0" failures="0" hostname="" id="" package="user_logout_spec" skipped="0"
-    tests="1" time="3.057" timestamp="Thu, 02 Feb 2017 16:59:55 GMT">
+    tests="1" time="3.213" timestamp="Thu, 02 Feb 2017 17:11:32 GMT">
   
-    <testcase name="User Log Out is successful" time="3.057" assertions="5">
+    <testcase name="User Log Out is successful" time="3.213" assertions="5">
 
     
 

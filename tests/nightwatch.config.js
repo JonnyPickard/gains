@@ -1,10 +1,4 @@
 const BINPATH = '../node_modules/nightwatch/bin/';
-// const selenium = require('selenium-download');
-//
-// // Ensure selenium and chromedriver are installed at test/bin
-// selenium.ensure(__dirname + '/bin', function (error) {
-//   if (error) console.error(error.stack);
-// });
 
 module.exports = {
   "src_folders": [
