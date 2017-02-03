@@ -9,6 +9,5 @@ module.exports = function signup(browser) {
     .setValue('input[name=email]', 'test@test.com')
     .click('.submit')
     .pause(1000)
-    .assert.urlContains('/')
     .assert.title('index');
 };

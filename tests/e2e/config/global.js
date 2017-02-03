@@ -9,16 +9,15 @@ module.exports = {
      * @param results
      */
 
-    // Can sometimes bug out and exit before tests have been run
     after: function(done) {
       this.error === true ? process.exit(1) : process.exit(0);
     },
     reporter: function(results) {
         if ((typeof(results.failed) === 'undefined' || results.failed === 0) &&
         (typeof(results.error) === 'undefined' || results.error === 0)) {
-            this.error = true;
+            this.error = false;
         } else {
-            this.erorr = false;
+            this.erorr = true;
         }
     }
 };

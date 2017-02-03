@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ./app.js",
-    "test": "./scripts/test_runner.js"
+    "e2e": "node ./node_modules/.bin/nightwatch --config ./tests/e2e/config/nightwatch.config.js",
+    "unit": "./node_modules/mocha/bin/mocha --recursive --colors ./tests/unit"
   },
   "dependencies": {
     "aws-sdk": "^2.9.0",

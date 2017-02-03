@@ -1,7 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 const Photo   = require('../models/photo.model');
-const aws      = require('aws-sdk');
+const AWS      = require('aws-sdk');
+
 const S3_BUCKET = process.env.S3_BUCKET;
 
 // GET Upload Photo
@@ -28,7 +29,7 @@ router.post('/upload', function(req, res, next) {
 
 // Ajax to S3 - Ideally need to set uid + user url to make sure no pics get overwritten
 router.get('/sign-s3', (req, res) => {
-  const s3 = new aws.S3();
+  const s3 = new AWS.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
   const s3Params = {

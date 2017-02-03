@@ -1,14 +1,13 @@
-const BINPATH = '../node_modules/nightwatch/bin/';
-
 module.exports = {
   "src_folders": [
-    "tests/e2e/user"
+    "tests/e2e/features/"
   ],
   "output_folder": "reports",
-  "globals_path": "./tests/config/global.js",
+  "globals_path": "./tests/e2e/config/global.js",
 
   "test_settings": {
     "default": {
+      "output": true,
       "launch_url": "http://localhost:3333",
       "selenium_port": 4444,
       "selenium_host": "localhost",
