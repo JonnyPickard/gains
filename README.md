@@ -30,7 +30,10 @@ Feature Checklist
 Installation Instructions
 -------------------------
 
-Note: Requires [Mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and [Nodejs](https://nodejs.org/en/download/). Click on the links to download.
+*Click on the links to download.*
+
+- The app requires [Mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and [Nodejs](https://nodejs.org/en/download/).
+- Feature tests require [Selenium Webdriver](https://www.npmjs.com/package/webdriver-manager).
 
 In a new terminal window boot up mongodb by running ``$ mongod``
 
@@ -38,6 +41,8 @@ In a new terminal window boot up mongodb by running ``$ mongod``
 2. ``$ cd gains`` into directory.
 3. ``$ npm install`` to install dependencies.
 4. ``$ npm start`` to boot up a server and view on http://localhost:3000
-5. ``$ npm test`` to run all tests.
-  - ``$ npm test f`` to run feature tests.
-  - ``$ npm test u`` to run unit tests.
+5. Unit tests
+  - ``$ npm run unit`` to run unit tests.
+6. Feature tests
+  - ``$ webdriver-manager start`` in a separate window to boot up Selenium Webdriver.
+  - ``$ npm run e2e`` to run feature tests.
