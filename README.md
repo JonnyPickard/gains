@@ -1,6 +1,8 @@
 Gains
 =====
 
+[![Build Status](https://travis-ci.org/JonnyPickard/gains.svg?branch=master)](https://travis-ci.org/JonnyPickard/gains)
+
 http://gains-app.herokuapp.com
 
 
