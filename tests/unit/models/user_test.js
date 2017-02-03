@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'test';
 
-const dbCleaner  = require('../../utils/mongodb_cleaner');
+const dbCleaner  = require('../helpers/mongodb_cleaner');
 const chai       = require('chai');
 const expect     = chai.expect;
 const should     = chai.should();

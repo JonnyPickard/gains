@@ -5,9 +5,9 @@
 
   <testsuite name="user_registration_spec"
     errors="0" failures="0" hostname="" id="" package="user" skipped="0"
-    tests="1" time="2.485" timestamp="Fri, 03 Feb 2017 17:01:39 GMT">
+    tests="1" time="2.449" timestamp="Fri, 03 Feb 2017 17:24:10 GMT">
   
-    <testcase name="User Registration is successful" time="2.485" assertions="3">
+    <testcase name="User Registration is successful" time="2.449" assertions="3">
 
     
 

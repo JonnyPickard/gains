@@ -1,6 +1,6 @@
-let config = require('../../app/config/config');
-let mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+const DB          = "mongodb://localhost/gains_test";
+const mongoose    = require('mongoose');
+mongoose.Promise  = require('bluebird');
 
 beforeEach(function (done) {
 
@@ -12,7 +12,7 @@ beforeEach(function (done) {
   }
 
   if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.db, function (err) {
+    mongoose.connect(DB, function (err) {
       if (err) {
         throw err;
       }
