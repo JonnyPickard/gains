@@ -19,8 +19,8 @@ module.exports = {
     .assert.urlContains('/upload')
     .setValue('input[name=photo_name]', 'test_photo')
     .setValue('input#file-input', require('path').resolve(__dirname + '/arnold.jpg'))
-    .pause(2000)
-    .click('#upload-button')
+    .waitForElementVisible('input#upload-button', 5000)
+    .click('input#upload-button')
     .pause(1000)
     .assert.title('index')
     .assert.containsText('.img-title', 'test_photo');

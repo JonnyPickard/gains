@@ -1,7 +1,4 @@
-var uploadButton = document.getElementById("upload-button");
-
 (() => {
-  uploadButton.disabled = true;
   document.getElementById("file-input").onchange = () => {
     const files = document.getElementById('file-input').files;
     const file = files[0];
@@ -35,10 +32,11 @@ function uploadFile(file, signedRequest, url){
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        uploadButton.disabled = false;
+        document.getElementById("upload-button").innerHTML = '<input id="upload-button" type="submit" value="Upload" />'
         document.getElementById('photo-url').value = url;
       }
       else{
+        console.log("S3 ajax error");
         alert('Could not upload file.');
       }
     }
