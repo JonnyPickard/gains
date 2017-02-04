@@ -1,10 +1,13 @@
+const uploadButton = document.getElementById('upload-button');
+
 (() => {
-  document.getElementById("file-input").onchange = () => {
+  document.getElementById('file-input').onchange = () => {
     const files = document.getElementById('file-input').files;
     const file = files[0];
     if(file == null){
       return alert('No file selected.');
     }
+    uploadButton.innerHTML = 'Uploading...<div class="loader"></div>';
     getSignedRequest(file);
   };
 })();
@@ -32,7 +35,7 @@ function uploadFile(file, signedRequest, url){
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        document.getElementById("upload-button").innerHTML = '<input id="upload-button" type="submit" value="Upload" />'
+        uploadButton.innerHTML = '<input id="upload-button" type="submit" value="Upload" />'
         document.getElementById('photo-url').value = url;
       }
       else{
