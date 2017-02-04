@@ -15,7 +15,12 @@ router.post('/upload', function(req, res, next) {
   let userId = res.locals.user.userId;
   let photoName = req.body.photo_name;
   let photoURL = req.body.photo_url
-  Photo.create({photo_name: photoName, userId: userId, photo_url: photoURL }, function(err, photo) {
+
+  Photo.create({photo_name: photoName,
+                    userId: userId,
+                 photo_url: photoURL },
+
+  function(err, photo) {
     if(err) {
       console.log(err);
       throw err;
@@ -27,7 +32,7 @@ router.post('/upload', function(req, res, next) {
 });
 
 
-// Ajax to S3 - Ideally need to set uid + user url to make sure no pics get overwritten
+// Ajax to S3 - Ideally need to set uid + user url
 router.get('/sign-s3', (req, res) => {
   const s3 = new AWS.S3();
   const fileName = req.query['file-name'];
