@@ -8,6 +8,5 @@ module.exports = function signup(browser) {
     .setValue('input[name=password2]', 'password')
     .setValue('input[name=email]', 'test@test.com')
     .click('.submit')
-    .pause(1000)
-    .assert.title('index');
+    .pause(1000);
 };

@@ -11,11 +11,11 @@ module.exports = {
   },
 
   afterEach: function(done) {
-    DBCleaner(User, done);
+    new DBCleaner(User, done);
   },
 
   after: function(browser) {
     browser
       .end();
   }
-}
+};

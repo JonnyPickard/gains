@@ -1,0 +1,28 @@
+<title>create</title>
+<h2 class="page-header">Create</h2>
+{{#if errors}}
+  {{# each errors}}
+    <div class="alert alert-danger">
+      {{msg}}
+    </div>
+  {{/each}}
+{{/if}}
+<form action="register" method="POST">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" name="username"/>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" name="email"/>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" name="password"/>
+  </div>
+  <div class="form-group">
+    <label>Password Confirmation</label>
+    <input type="password" class="form-control" name="password2"/>
+  </div>
+  <input class="submit" type="submit" value="Sign Up" name="signup" />
+</form>

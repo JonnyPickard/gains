@@ -12,16 +12,16 @@ module.exports = {
 
   'User Log Out is successful': function(browser) {
     browser
-    .click("#logout")
+    .click('#logout')
     .assert.urlContains('/users/login');
   },
 
   afterEach: function(done) {
-    DBCleaner(User, done);
+    new DBCleaner(User, done);
   },
 
   after: function(browser) {
     browser
       .end();
   }
-}
+};
