@@ -9,7 +9,7 @@ http://gains-app.herokuapp.com
 About
 -----
 
-This is an Instagram clone for gym goers built with NodeJS, ExpresssJS and Mongodb. Tested with Mocha, Chai and ZombieJS.
+This is an Instagram clone for gym goers built with NodeJS, ExpresssJS and Mongodb. Tested with NightwatchJS, Selenium Webdriver, Mocha and Chai. CI with Travis, Hound and Heroku.
 
 Feature Checklist
 --------------
@@ -17,9 +17,10 @@ Feature Checklist
 - <s>User login / registration / authentication</s>
 - <s>Upload photos</s>
 - <s>View all user photos stream page</s>
-- <s>Oauth login with facebook</s>
-- <s>Oauth login with google</s>
-- User homepage for RUD existing photos
+- <s>OAuth login with facebook</s>
+- <s>OAuth login with google</s>
+- <s>Connect OAuth accounts in DB</s>
+- User CRUD avatar from account page
 - Endorse a photo
 - Comment on a photo
 - Endorse a comment
