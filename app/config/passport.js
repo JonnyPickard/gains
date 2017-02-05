@@ -81,24 +81,40 @@ module.exports = function(passport) {
       passReqToCallback: true
 	  },
     function(req, accessToken, refreshToken, profile, done) {
+      req.session.loginType = 'facebook';
         process.nextTick(function(){
-          User.findOne({ 'facebook.id': profile.id }, function(err, user){
-          	if(err) { return done(err); }
-            req.session.loginType = 'facebook';
-          	if(user) {
-              req.session.username = user.local.username;
-          		return done(null, user);
-            } else {
-          		let newUser = new User();
-          		newUser.facebook.id = profile.id;
-          		newUser.facebook.token = accessToken;
-          		newUser.facebook.name = profile.displayName;
-          		newUser.save(function(err){
-          			if(err) { throw err; }
-          			return done(null, newUser);
-          		});
-          	}
-          });
+          // Create new User
+          if(!req.user) {
+            User.findOne({ 'facebook.id': profile.id }, function(err, user){
+              if(err) { return done(err); }
+              if(user) {
+                req.session.username = user.local.username;
+                return done(null, user);
+              } else {
+                let newUser = new User();
+                newUser.facebook.id = profile.id;
+                newUser.facebook.token = accessToken;
+                newUser.facebook.name = profile.displayName;
+                newUser.save(function(err){
+                  if(err) { throw err; }
+                  return done(null, newUser);
+                });
+              }
+            });
+
+          // Merge with existing User
+          } else {
+            let user = req.user;
+            req.session.username = user.local.username;
+            user.facebook.id = profile.id;
+            user.facebook.token = accessToken;
+            user.facebook.name = profile.displayName;
+
+            user.save(function(err){
+              if(err) { throw err; }
+              return done(null, user);
+            });
+          }
         });
       }
 
@@ -112,25 +128,42 @@ module.exports = function(passport) {
 	  },
 	  function(req, accessToken, refreshToken, profile, done) {
 	    	process.nextTick(function(){
-	    		User.findOne({'google.id': profile.id}, function(err, user){
-	    			if(err) { return done(err); }
-            req.session.loginType = 'google';
-	    			if(user) {
-              req.session.username = user.local.username;
-              return done(null, user);
-            } else {
-	    				var newUser = new User();
-	    				newUser.google.id = profile.id;
-	    				newUser.google.token = accessToken;
-	    				newUser.google.name = profile.displayName;
-	    				newUser.google.email = profile.emails[0].value;
+          // Create new User
+          if(!req.user) {
+            User.findOne({'google.id': profile.id}, function(err, user){
+              if(err) { return done(err); }
+              req.session.loginType = 'google';
+              if(user) {
+                req.session.username = user.local.username;
+                return done(null, user);
+              } else {
+                let newUser = new User();
+                newUser.google.id = profile.id;
+                newUser.google.token = accessToken;
+                newUser.google.name = profile.displayName;
+                newUser.google.email = profile.emails[0].value;
 
-	    				newUser.save(function(err){
-	    					if(err) { throw err; }
-	    					return done(null, newUser);
-	    				});
-	    			}
-	    		});
+                newUser.save(function(err){
+                  if(err) { throw err; }
+                  return done(null, newUser);
+                });
+              }
+            });
+          // Merge with existing User
+
+          } else {
+            let user = req.user;
+            req.session.username = user.local.username;
+            user.google.id = profile.id;
+  					user.google.token = accessToken;
+  					user.google.name = profile.displayName;
+  					user.google.email = profile.emails[0].value;
+
+            user.save(function(err){
+              if(err) { throw err; }
+              return done(null, user);
+            });
+          }
 	    	});
 	    }
 

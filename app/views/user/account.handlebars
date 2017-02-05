@@ -1,3 +1,19 @@
 <title>account</title>
 <h2 class="page-header">Account</h2>
 <h3 id="username">{{user.local.username}}</h3>
+<hr />
+{{#unless user.facebook.name }}
+  <p>
+    <strong>Connect to Facebook account</strong>
+  </p>
+  <a href="/auth/connect-facebook" class="link link-primary"><img src="/images/facebook-login-blue.png"  style="width:150px;height:35px;border:0;"></a>
+{{/unless}}
+{{#unless user.google.name }}
+  <p>
+    <strong>Connect to Google account</strong>
+  </p>
+  <a href="/auth/connect-google" class="link link-primary"><img src="/images/google-login-red.png"  style="width:200px;height:31px;border:0;"></a>
+{{/unless}}
+{{#unless user}}
+  <script>location.replace("/users/login");</script>
+{{/unless}}

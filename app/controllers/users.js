@@ -41,7 +41,7 @@ router.get('/create', function(req, res){
   if (!req.session.username) {
     res.render('user/create');
   } else {
-    req.flash('success_msg', 'Successfully logged in');
+    req.flash('success_msg', 'Success');
     res.redirect('/');
   }
 });
