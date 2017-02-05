@@ -11,6 +11,7 @@
       <ul class="nav nav-pills pull-right" style="padding: 5px 10px 5px 10px;">
         {{#if user}}
           <li role="presentation"><a href="/photo/upload" class="upload-link btn btn-default">Upload</a></li>
+          <li role="presentation"><a href="/users/account" class="account-link btn btn-default">Account</a></li>
           <li role="presentation">
             <form method='post' action='/users/logout'>
               <input id="logout" class="submitLink btn btn-default" type='submit' value='Logout' style="padding:10px 15px 10px 15px;">
@@ -21,7 +22,7 @@
           <li role="presentation"><a id="register" href="/users/register" class="btn btn-default">Sign Up</a></li>
         {{/if}}
       </ul>
-      <h3 class="text-muted col-md-1">Gains</h3>
+      <h3 class="text-muted col-md-3">Gains</h3>
     </nav>
   </div>
   <div class="container">

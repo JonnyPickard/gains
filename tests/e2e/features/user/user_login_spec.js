@@ -9,7 +9,7 @@ module.exports = {
   before: function(browser) {
     signup(browser);
     browser
-      .click("#logout")
+      .click('#logout')
       .assert.urlContains('/users/login');
   },
 
@@ -25,7 +25,7 @@ module.exports = {
   },
 
   afterEach: function(done) {
-    DBCleaner(User, done);
+    new DBCleaner(User, done);
   },
 
   after: function(browser) {

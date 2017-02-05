@@ -10,10 +10,13 @@ module.exports = {
     signup(browser);
   },
 
-  'User Log Out is successful': function(browser) {
+  'User can visit Account page successfully': function(browser) {
     browser
-    .click('#logout')
-    .assert.urlContains('/users/login');
+    .click('.account-link')
+    .pause(1000)
+    .assert.urlContains('/users/account')
+    .assert.containsText('#username',
+        'test_user');
   },
 
   afterEach: function(done) {

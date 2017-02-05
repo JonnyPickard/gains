@@ -25,9 +25,9 @@ router.post('/logout', function(req, res) {
 
 // GET Login
 router.get('/login', function(req, res) {
+  req.flash('success_msg', 'Successfully logged in');
   res.render('user/login');
 });
-
 
 // POST Login
 router.post('/login', passport.authenticate('local-login', {
@@ -35,5 +35,20 @@ router.post('/login', passport.authenticate('local-login', {
   failureRedirect: '/users/login',
   failureFlash: true
 }));
+
+// GET Create form - After login via oauth
+router.get('/create', function(req, res){
+  if (!req.session.username) {
+    res.render('user/create');
+  } else {
+    req.flash('success_msg', 'Successfully logged in');
+    res.redirect('/');
+  }
+});
+
+// GET Account
+router.get('/account', function(req, res){
+  res.render('user/account');
+});
 
 module.exports = router;
