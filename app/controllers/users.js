@@ -46,4 +46,9 @@ router.get('/create', function(req, res){
   }
 });
 
+// GET Account
+router.get('/account', function(req, res){
+  res.render('user/account');
+});
+
 module.exports = router;
