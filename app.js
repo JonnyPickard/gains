@@ -12,6 +12,7 @@ const session       = require('express-session');
 const expressValidator = require('express-validator');
 const flash         = require('connect-flash');
 const passport      = require('passport');
+const minify        = require('express-minify');
 
 //Use node promises instead of mongoose
 mongoose.Promise = require('bluebird');
@@ -29,6 +30,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(minify());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, './app/public')));
