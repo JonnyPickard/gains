@@ -9,21 +9,23 @@
 
 <form action="/avatar/upload" method="POST">
   <div class="form-group">
-    <input type="file" id="file-input" class="form-control" accept="image/*" name="photo-file-name"/>
+    <label class="btn btn-default btn-file">
+      Edit Avatar<input type="file" id="file-input" accept="image/*" name="photo-file-name" style="display: none;"/>
+    </label>
     <input id="photo-url" type="hidden" name="avatar_url" value="avatar_url" />
   </div>
   <span id="upload-button" type="hidden"></span>
 </form>
-
 <h3 id="username">{{user.local.username}}</h3>
-<hr />
 {{#unless user.facebook.name }}
+<hr />
   <p>
     <strong>Connect to Facebook account</strong>
   </p>
   <a href="/auth/connect-facebook" class="link link-primary"><img src="/images/facebook-login-blue.png"  style="width:150px;height:35px;border:0;"></a>
 {{/unless}}
 {{#unless user.google.name }}
+<hr />
   <p>
     <strong>Connect to Google account</strong>
   </p>

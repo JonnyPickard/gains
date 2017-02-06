@@ -28,7 +28,7 @@
           document.getElementById('avatar').src = url;
           document.getElementById('photo-url').value = url;
           uploadButton.innerHTML =
-          '<input id="uploadButton" type="submit" value="Save" />';
+          '<input class="btn btn-default" id="uploadButton" type="submit" value="Save" />';
         }
         else{
           console.error('S3 ajax ERR');
