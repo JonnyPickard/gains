@@ -8,6 +8,7 @@ const autoIncrement   = require('mongoose-auto-increment');
 // User Schema
 var UserSchema = new Schema({
   userId:     { default: 0 },
+  avatarURL:  { type: String, default: '/images/blank-avatar.png' },
   local: {
     username:   { type: String },
     email:      { type: String},

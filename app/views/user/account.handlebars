@@ -1,5 +1,20 @@
 <title>account</title>
 <h2 class="page-header">Account</h2>
+
+<div class="avatar">
+  <p>
+    <img id="avatar" src="{{user.avatarURL}}" style="height: 100px; width: 100px; border-radius: 50%;" />
+  </p>
+</div>
+
+<form action="/avatar/upload" method="POST">
+  <div class="form-group">
+    <input type="file" id="file-input" class="form-control" accept="image/*" name="photo-file-name"/>
+    <input id="photo-url" type="hidden" name="avatar_url" value="avatar_url" />
+  </div>
+  <span id="upload-button" type="hidden"></span>
+</form>
+
 <h3 id="username">{{user.local.username}}</h3>
 <hr />
 {{#unless user.facebook.name }}
@@ -17,3 +32,4 @@
 {{#unless user}}
   <script>location.replace("/users/login");</script>
 {{/unless}}
+<script src="/javascripts/s3_avatar_ajax.js"></script>
