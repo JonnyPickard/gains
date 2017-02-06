@@ -12,8 +12,6 @@ const session       = require('express-session');
 const expressValidator = require('express-validator');
 const flash         = require('connect-flash');
 const passport      = require('passport');
-const router        = require('./app/router/router');
-const setGlobals    = require('./app/helpers/global_vars');
 
 //Use node promises instead of mongoose
 mongoose.Promise = require('bluebird');
@@ -49,9 +47,9 @@ app.use(passport.session());
 // Express Validator settings
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+      var namespace  = param.split('.');
+      var root       = namespace.shift();
+      var formParam  = root;
 
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
@@ -68,20 +66,19 @@ app.use(expressValidator({
 app.use(flash());
 
 // Set Global Vars
-setGlobals(app);
+const setGlobals    = require('./app/helpers/global_vars')(app);
 
 //Connecting MongoDB using mongoose to our application
 //Mongoose connection
 mongoose.connect(config.db);
 
-//This callback will be triggered once the connection is successfully established to MongoDB
+//This callback is triggered once the connection is established with MongoDB
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.db);
 });
 
-
 // Instantiate Routes
-router(app);
+const router        = require('./app/router/router')(app);
 
 // Init Passport
 const passportInit = require('./app/config/passport.js')(passport);
