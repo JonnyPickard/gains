@@ -22,7 +22,7 @@ const app = express();
 // View engine setup
 app.set('views', (__dirname + '/app/views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layout',
-                                layoutsDir: __dirname + '/app/views/layouts'}));
+                                    layoutsDir: __dirname + '/app/views/layouts'}));
 
 app.set('view engine', 'handlebars');
 
@@ -30,11 +30,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(minify());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, './app/public')));
 app.use(favicon(path.join(__dirname, './app/public/favicon.png')));
+app.use(minify());
 
 // Express sessions set secret
 app.use(session({
@@ -83,7 +83,7 @@ mongoose.connection.on('connected', function () {
 const router        = require('./app/router/router')(app);
 
 // Init Passport
-const passportInit = require('./app/config/passport.js')(passport);
+const passportInit  = require('./app/config/passport.js')(passport);
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -97,6 +97,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port);
-console.log('Listening on port ' + port);
+console.log('Express App Listening on port: ' + port);
 
 module.exports = app;
