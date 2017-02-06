@@ -20,7 +20,7 @@ Feature Checklist
 - <s>OAuth login with facebook</s>
 - <s>OAuth login with google</s>
 - <s>Connect OAuth accounts in DB</s>
-- User CRUD avatar from account page
+- <s>User CRU avatar from account page</s>
 - Endorse a photo
 - Comment on a photo
 - Endorse a comment
