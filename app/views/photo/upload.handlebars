@@ -1,16 +1,26 @@
 <title>upload</title>
 {{#if user}}
-<h2 class="page-header">Upload</h2>
-<form action="upload" method="POST">
-  <div class="form-group">
-    <label>Photo Name</label>
-    <input type="text" class="form-control" name="photo_name" required="true"/>
-    <br />
-    <input type="file" id="file-input" class="form-control" accept="image/*" name="photo-file-name"/>
+<div class="container-fluid form-container">
+  <h2 class="page-header">Upload</h2>
+  <form action="upload" method="POST" style="overflow:scroll;">
+    <div class="form-group">
+      <label>Photo Name</label>
+      <input type="text" class="form-control" name="photo_name" required="true"/>
+      <br />
+      <p>
+        <label class="btn btn-default btn-file">
+          Select Image<input type="file" id="file-input" accept="image/*" name="photo-file-name" style="display: none;"/>
+        </label>
+      </p>
+    </div>
+    <div id="upload-button"></div>
+    <div class="container-fluid pull-left" style="border:1px solid #cecece;border-radius:1%;">
+      <img id="preview" style="padding:5px;" class="img-responsive" src="/images/blank-avatar.png"/>
+    </div>
     <input id="photo-url" type="hidden" name="photo_url" value="photo_url" />
-  </div>
-  <span id="upload-button"></span>
-</form>
+  </form>
+  <br />
+</div>
 <script src="/javascripts/s3_photo_ajax.js"></script>
 {{else}}
   <script>location.replace("/users/login");</script>

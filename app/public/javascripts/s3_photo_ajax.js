@@ -26,8 +26,11 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           uploadButton.innerHTML =
-          '<input id="upload-button" type="submit" value="Upload" />';
+          '<p>' +
+          '<input class="btn btn-default" id="upload-button" type="submit" value="Upload"/>' +
+          '</p>';
           document.getElementById('photo-url').value = url;
+          document.getElementById('preview').src = url;
         }
         else{
           console.log('S3 ajax ERR');
@@ -45,7 +48,7 @@
         if(file == null){
           return alert('No file selected.');
         }
-        uploadButton.innerHTML = 'Uploading...<div class="loader"></div>';
+        uploadButton.innerHTML = '<p>Uploading...<div class="loader"></div></p>';
         getSignedRequest(file);
       };
     })();
