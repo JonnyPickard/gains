@@ -27,10 +27,11 @@
         if(xhr.status === 200){
           document.getElementById('avatar').src = url;
           document.getElementById('photo-url').value = url;
-          uploadButton.innerHTML = '<input id="uploadButton" type="submit" value="Save" />';
+          uploadButton.innerHTML =
+          '<input id="uploadButton" type="submit" value="Save" />';
         }
         else{
-          console.log("S3 ajax error");
+          console.error('S3 ajax ERR');
           alert('Could not upload file.');
         }
       }

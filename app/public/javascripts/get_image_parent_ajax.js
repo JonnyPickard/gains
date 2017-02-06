@@ -5,11 +5,15 @@ var getUserDetails = function(userId, tagId){
     if(xhr.readyState === 4){
       if(xhr.status === 200){
         const response = JSON.parse(xhr.responseText);
-        var ele = document.getElementById(tagId);
+        const ele = document.getElementById(tagId);
         ele.innerHTML =
-        '<span><img class="user-avatar" src=' + response.avatarURL +
+        
+        '<span>' +
+        '<img class="user-avatar" src=' + response.avatarURL +
         ' style="width: 60px; height: 60px; border-radius: 50%;">' +
-        '</img></span>' +
+        '</img>' +
+        '</span>' +
+
         '<span><h3> ' + response.username + '</h3></span>';
       }
       else{

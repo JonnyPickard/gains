@@ -1,4 +1,4 @@
-const DB          = "mongodb://localhost/gains_test";
+const DB          = 'mongodb://localhost/gains_test';
 const mongoose    = require('mongoose');
 mongoose.Promise  = require('bluebird');
 

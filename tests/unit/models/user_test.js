@@ -6,9 +6,9 @@ const expect     = chai.expect;
 const should     = chai.should();
 const User       = require('../../../app/models/user.model');
 
-describe("User", function() {
+describe('User', function() {
 
-  describe("#create()", function(){
+  describe('#create()', function(){
     it('should create a new user', function(done){
       var user = {
         local: {
@@ -32,7 +32,7 @@ describe("User", function() {
   describe('#hashPassword()', function(){
     it('it return a hash of the password', function(done){
       var password = ('secret');
-      var hashedPassword = User().hashPassword(password);
+      var hashedPassword = new User().hashPassword(password);
       expect(password).not.to.equal(hashedPassword);
       done();
     });
@@ -42,7 +42,7 @@ describe("User", function() {
   describe('#validPassword()', function(){
     xit('it successfully compare the raw and hashed passwords', function(){
       let password = ('secret');
-      let hashedPassword = User().hashPassword(password);
+      let hashedPassword = new User().hashPassword(password);
 
     });
 

@@ -43,10 +43,6 @@ UserSchema.methods = {
     return bcrypt.compare(password, this.local.password);
   },
 
-  getUserByUsername: function(username, callback) {
-    UserModel.findOne({username: username}, callback);
-  },
-
   getUserById: function(id, callback){
     UserModel.findById(id, callback);
   },
