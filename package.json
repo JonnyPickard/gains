@@ -5,7 +5,7 @@
   "author": "jonnypickarddev@gmail.com",
   "repository": {
     "type": "git",
-    "url": "http://github.com/jonnypickard/gains"
+    "url": "https://github.com/jonnypickard/gains"
   },
   "scripts": {
     "start": "node ./app.js",
@@ -27,7 +27,6 @@
     "express-validator": "^3.1.2",
     "mongoose": "^4.7.8",
     "mongoose-auto-increment": "^5.0.1",
-    "mongoose-unique-validator": "^1.0.3",
     "morgan": "~1.7.0",
     "nightwatch": "^0.9.12",
     "passport": "^0.3.2",
@@ -38,10 +37,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "database-cleaner": "^1.2.0",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.12",
-    "zombie": "^5.0.5",
     "webdriver-manager": "10"
   }
 }

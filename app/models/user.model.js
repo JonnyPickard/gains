@@ -1,6 +1,5 @@
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
-const uniqueValidator = require('mongoose-unique-validator');
 const Schema          = mongoose.Schema;
 const bcrypt          = require('bcryptjs');
 const autoIncrement   = require('mongoose-auto-increment');
