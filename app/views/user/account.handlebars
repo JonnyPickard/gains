@@ -29,7 +29,7 @@
   </p>
   <a href="/auth/connect-google" class="link link-primary"><img src="/images/google-login-red.png"  style="width:200px;height:31px;border:0;"></a>
 {{/unless}}
-{{#unless user}}
+{{#unless user.local.username}}
   <script>location.replace("/users/login");</script>
 {{/unless}}
 <script src="/javascripts/s3_avatar_ajax.js"></script>
