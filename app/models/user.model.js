@@ -50,6 +50,10 @@ UserSchema.methods = {
 
   getUserById: function(id, callback){
     UserModel.findById(id, callback);
+  },
+
+  getUserByUserId: function(userId, callback){
+    UserModel.findOne(userId, callback);
   }
 };
 

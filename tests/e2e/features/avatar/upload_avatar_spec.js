@@ -4,7 +4,6 @@ const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
 const DBCleaner = require('../../helpers/DB/cleanDB');
 
-
 module.exports = {
 
   before: function(browser) {

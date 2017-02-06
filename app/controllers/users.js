@@ -51,4 +51,22 @@ router.get('/account', function(req, res){
   res.render('user/account');
 });
 
+// GET User
+router.get('/user', function(req, res){
+  let userId = req.query.userId;
+  let user = new User();
+
+  user.getUserByUserId({userId: userId}, function(err, user) {
+    res.setHeader('Content-Type', 'application/json');
+    if(err) { throw err; }
+    if(!user) {
+      res.status(500)
+      .send(JSON.stringify('User could not be found!'));
+    }
+    if(user) {
+      res.send({username: user.local.username, avatarURL: user.avatarURL});
+    }
+  });
+});
+
 module.exports = router;

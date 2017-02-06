@@ -5,7 +5,6 @@ const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
 const DBCleaner = require('../../helpers/DB/cleanDB');
 
-
 module.exports = {
 
   before: function(browser) {
@@ -18,17 +17,22 @@ module.exports = {
     .pause(1000)
     .assert.urlContains('/upload')
     .setValue('input[name=photo_name]', 'test_photo')
-    .setValue('input#file-input', require('path').resolve(__dirname + '/arnold.jpg'))
+    .setValue('input#file-input',
+      require('path').resolve(__dirname + '/arnold.jpg'))
     .waitForElementVisible('input#upload-button', 5000)
     .click('input#upload-button')
     .pause(1000)
     .assert.title('index')
+    .assert.containsText('.img-belongs-to', 'test_user')
+    .assert.attributeContains('.user-avatar',
+     'src',
+     '/images/blank-avatar.png')
     .assert.containsText('.img-title', 'test_photo');
   },
 
   afterEach: function(done) {
-    DBCleaner(User, done);
-    DBCleaner(Photo, done);
+    new DBCleaner(User, done);
+    new DBCleaner(Photo, done);
   },
 
   after: function(browser) {
