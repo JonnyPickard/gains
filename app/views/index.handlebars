@@ -7,11 +7,12 @@
       <li class="list-group-item">
         <span class="img-title text-center"><h3>{{photo_name}}</h3></span>
         <hr size="4"/>
-        <img class="center-block img-responsive" style="box-shadow: 1px 1px 1px #888888;" src={{photo_url}} />          
+        <img class="center-block img-responsive" style="box-shadow: 1px 1px 1px #888888;" src={{photo_url}} />
       </li>
     </ul>
   {{/each}}
   </div>
-{{else}}
-  <script>location.replace("/users/login");</script>
 {{/if}}
+{{#unless user.local.username}}
+  <script>location.replace("/users/login");</script>
+{{/unless}}

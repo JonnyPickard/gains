@@ -9,7 +9,7 @@
   <div class="header clearfix">
     <nav class="navbar navbar-default">
       <ul class="nav nav-pills pull-right" style="padding: 5px 10px 5px 10px;">
-        {{#if user}}
+        {{#if user.local.username}}
           <li role="presentation"><a href="/photo/upload" class="upload-link btn btn-default">Upload</a></li>
           <li role="presentation"><a href="/users/account" class="account-link btn btn-default">Account</a></li>
           <li role="presentation">
