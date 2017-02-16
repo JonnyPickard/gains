@@ -39,7 +39,7 @@ router.post('/login', passport.authenticate('local-login', {
 // GET Create form - After login via oauth
 router.get('/create', function(req, res){
   if (!req.session.username) {
-    res.render('user/create');
+    res.render('user/create', {msg: 'Create User form'});
   } else {
     req.flash('success_msg', 'Success');
     res.redirect('/');
@@ -51,7 +51,7 @@ router.get('/account', function(req, res){
   res.render('user/account');
 });
 
-// GET User
+// GET Username + avatarURL
 router.get('/user', function(req, res){
   let userId = req.query.userId;
   let user = new User();

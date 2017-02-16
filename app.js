@@ -22,7 +22,7 @@ const app = express();
 // View engine setup
 app.set('views', (__dirname + '/app/views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layout',
-                                    layoutsDir: __dirname + '/app/views/layouts'}));
+                                layoutsDir: __dirname + '/app/views/layouts'}));
 
 app.set('view engine', 'handlebars');
 
@@ -96,7 +96,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port);
-console.log('Express App Listening on port: ' + port);
+
+app.listen(port, () => {
+  console.log('Express App Listening on port: ' + port);
+});
+
 
 module.exports = app;
