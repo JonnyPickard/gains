@@ -1,49 +1,25 @@
 <!DOCTYPE html>
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="/style.css" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script></body>
+  <!--[if lt IE 9]>
+  <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
-<body style="padding-bottom:50px;">
-  <div class="header clearfix">
-    <nav class="navbar navbar-default">
-      <ul class="nav nav-pills pull-right" style="padding: 5px 10px 5px 10px;">
-        {{#if user.local.username}}
-          <li role="presentation"><a href="/photo/upload" class="upload-link btn btn-default">Upload</a></li>
-          <li role="presentation"><a href="/users/account" class="account-link btn btn-default">Account</a></li>
-          <li role="presentation">
-            <form method="POST" action="/users/logout">
-              <input id="logout" class="submitLink btn btn-default" type="submit" value="Logout" style="padding:10px 15px 10px 15px;">
-            </form>
-          </li>
-        {{else}}
-          <li role="presentation"><a id="login" href="/users/login" class="btn btn-default">Login</a></li>
-          <li role="presentation"><a id="register" href="/users/register" class="btn btn-default">Sign Up</a></li>
-        {{/if}}
-      </ul>
-      <h3 class="col-md-3"><a style="text-decoration: none;" href="/" class="text-muted">Gains</a></h3>
-    </nav>
+<body>
+  <div>
+    {{>_navbar}}
   </div>
-  <div class="container">
-    <div class="flash-messages">
-      {{#if success_msg}}
-      <div class="alert alert-success">{{success_msg}}</div>
-      {{/if}}
-
-      {{#if error_msg}}
-      <div class="alert alert-danger">{{error_msg}}</div>
-      {{/if}}
-
-      {{#if error}}
-      <div class="alert alert-danger">{{error}}</div>
-      {{/if}}
-    </div>
-
+  <div id="layout-page" class="container">
+    {{>_flash_messages}}
     {{{body}}}
-
-    <footer class="navbar navbar-fixed-bottom" style="padding: 5px 10px 5px 10px; background:white; border-top:1px solid #cecece;">
-      <p class="pull-right">&copy; 2017 Gains</p>
-    </footer>
+  </div>
+  <div id="layout-footer">
+    {{>_navbar_footer}}
   </div>
 </body>

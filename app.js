@@ -21,8 +21,11 @@ const app = express();
 
 // View engine setup
 app.set('views', (__dirname + '/app/views'));
+
 app.engine('handlebars', exphbs({defaultLayout: 'layout',
-                                    layoutsDir: __dirname + '/app/views/layouts'}));
+                                layoutsDir: __dirname + '/app/views/layouts',
+                                partialsDir: __dirname + '/app/views/partials/'
+                              }));
 
 app.set('view engine', 'handlebars');
 

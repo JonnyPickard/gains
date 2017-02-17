@@ -18,7 +18,7 @@ module.exports = {
     .setValue('input[name=username]', 'test_user')
     .setValue('input[name=password]', 'password')
     .setValue('input[name=email]', 'test@test.com')
-    .click('.login')
+    .click('.submit-login')
     .pause(1000)
     .assert.urlContains('/')
     .assert.title('index');
