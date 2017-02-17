@@ -9,6 +9,7 @@ module.exports = {
   before: function(browser) {
     signup(browser);
     browser
+      .click('.dropdown-toggle')
       .click('#logout')
       .assert.urlContains('/users/login');
   },
@@ -18,7 +19,7 @@ module.exports = {
     .setValue('input[name=username]', 'test_user')
     .setValue('input[name=password]', 'password')
     .setValue('input[name=email]', 'test@test.com')
-    .click('.login')
+    .click('.submit-login')
     .pause(1000)
     .assert.urlContains('/')
     .assert.title('index');

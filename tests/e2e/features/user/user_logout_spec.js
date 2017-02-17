@@ -12,6 +12,7 @@ module.exports = {
 
   'User Log Out is successful': function(browser) {
     browser
+    .click('.dropdown-toggle')
     .click('#logout')
     .assert.urlContains('/users/login');
   },

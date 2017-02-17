@@ -1,13 +1,46 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
 .loader {
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#layout-page {
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+#layout-footer #footer-text {
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: right;
+}
+
+.navbar {
+  background-color: rgb(250, 250, 250);
+}
+
+.oauth-login-links {
+  text-align: left;
+}
+
+.oauth-link {
+  padding-bottom: 10px;
+}
+
+.oauth-img {
+  width: 50%;
+  height: 50%;
+  box-shadow: 1px 1px 5px grey;
 }

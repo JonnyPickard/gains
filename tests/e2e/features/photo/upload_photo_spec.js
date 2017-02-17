@@ -13,6 +13,7 @@ module.exports = {
 
   'Photo upload is successful': function(browser) {
     browser
+    .click('.dropdown-toggle')
     .click('.upload-link')
     .pause(1000)
     .assert.urlContains('/upload')

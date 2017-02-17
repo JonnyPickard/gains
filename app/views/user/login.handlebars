@@ -1,28 +1,33 @@
 <title>login</title>
 <h2 class="page-header">Login</h2>
-<form action="login" method="POST">
-  <div class="form-group">
-    <label>Username</label>
-    <input type="username" class="form-control" name="username"/>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="email" class="form-control" name="email"/>
-  </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password"/>
-  </div>
-  <input class="login" type="submit" value="Login"/>
-</form>
+<div class="login-form">
+  <form action="login" method="POST">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="username" class="form-control" name="username"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name="password"/>
+    </div>
+    <input class="submit-login" type="submit" value="Login"/>
+  </form>
+</div>
+
 <div class="register-link">
   <hr size="4"/>
   <span><h4>New User?</h4></span>
   <a href="register">Sign Up</a>
 </div>
 
-<div class="oauth-login-links">
-  <hr size="4"/>
-  <a href="/auth/facebook" class="link link-primary"><img src="/images/facebook-login-blue.png"  style="width:150px;height:35px;border:0;"></a>
-  <a href="/auth/google" class="link link-primary"><img src="/images/google-login-red.png"  style="width:200px;height:31px;border:0;"></a>
+<hr />
+
+<div class="container-fluid oauth-login-links">
+    <div class="col-lg-4 pull-left oauth-link"><a href="/auth/facebook" class="link link-primary"><img class="oauth-img" src="/images/facebook-login-blue.png"></a></div>
+    <div class="col-lg-4 pull-left oauth-link"><a href="/auth/google" class="link link-primary"><img class="oauth-img" src="/images/google-login-red.png"></a></div>
+    <div class="col-lg-4"></div>
 </div>
