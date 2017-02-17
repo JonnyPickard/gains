@@ -1,5 +1,6 @@
 <title>register</title>
 <h2 class="page-header">Register</h2>
+
 {{#if errors}}
   {{# each errors}}
     <div class="alert alert-danger">
@@ -7,6 +8,7 @@
     </div>
   {{/each}}
 {{/if}}
+
 <form action="register" method="POST">
   <div class="form-group">
     <label>Username</label>
