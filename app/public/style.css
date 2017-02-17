@@ -1,3 +1,7 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
 .loader {
   border: 4px solid #f3f3f3; /* Light grey */
   border-top: 4px solid #3498db; /* Blue */
@@ -18,15 +22,25 @@
 }
 
 #layout-footer #footer-text {
-  float: right;
   padding-right: 10px;
   padding-top: 10px;
-}
-
-.dropdown-menu {
-
+  text-align: right;
 }
 
 .navbar {
   background-color: rgb(250, 250, 250);
+}
+
+.oauth-login-links {
+  text-align: left;
+}
+
+.oauth-link {
+  padding-bottom: 10px;
+}
+
+.oauth-img {
+  width: 50%;
+  height: 50%;
+  box-shadow: 1px 1px 5px grey;
 }
