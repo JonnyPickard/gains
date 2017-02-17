@@ -13,7 +13,7 @@ let user = {
 };
 
 //GET Register
-test('Correctly returns the register html page', function (t) {
+test('Correctly returns the register html page', (t) => {
   request(app)
     .get('/users/register')
     .expect(200)
@@ -25,7 +25,7 @@ test('Correctly returns the register html page', function (t) {
 });
 
 // POST Register
-test('Correctly post user registration form info', function (t) {
+test('Correctly post user registration form info', (t) => {
   request(app)
     .post('/users/register')
     .send(user)
@@ -40,7 +40,7 @@ test('Correctly post user registration form info', function (t) {
 });
 
 // POST Logout
-test('Correctly post request user logout', function (t) {
+test('Correctly post request user logout', (t) => {
   request(app)
     .post('/users/logout')
     .expect(302)
@@ -52,7 +52,7 @@ test('Correctly post request user logout', function (t) {
 });
 
 // Get Login
-test('Correctly post user login', function (t) {
+test('Correctly post user login', (t) => {
   new CreateUser();
 
   request(app)
@@ -69,7 +69,7 @@ test('Correctly post user login', function (t) {
 });
 
 // Get Create User
-test('Correctly get users create form', function (t) {
+test('Correctly get users create form', (t) => {
   request(app)
     .get('/users/create')
     .expect(200)
@@ -81,7 +81,7 @@ test('Correctly get users create form', function (t) {
 });
 
 // GET Account
-test('Correctly get users account', function (t) {
+test('Correctly get users account', (t) => {
   request(app)
     .get('/users/account')
     .expect(200)
@@ -93,7 +93,7 @@ test('Correctly get users account', function (t) {
 });
 
 //Get Username + avatarURL as json
-test('Correctly get username + avatar as json', function (t) {
+test('Correctly get username + avatar as json', (t) => {
   new CreateUser();
 
   request(app)

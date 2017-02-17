@@ -12,26 +12,25 @@ module.exports = function(passport) {
   // Passport Local Login strategy
   passport.use('local-login', new LocalStrategy({
     usernameField: 'username',
-      passwordField: 'password',
-      emailField: 'email',
-      passReqToCallback: true
-    },
-    function(req, username, password, done){
-      process.nextTick(function(){
-        User.findOne({ 'local.username': username}, function(err, user){
-          if(err) { return done(err); }
-          if(!user) {
-            return done(null, false, req.flash('error_msg', 'No user found'));
-          }
-          if(!user.validPassword(password)) {
-            return done(null, false, req.flash('error_msg',
-                                               'Invalid password'));
-          }
-          return done(null, user);
-        });
+    passwordField: 'password',
+    emailField: 'email',
+    passReqToCallback: true
+  },
+  function(req, username, password, done){
+    process.nextTick(function(){
+      User.findOne({ 'local.username': username}, function(err, user){
+        if(err) { return done(err); }
+        if(!user) {
+          return done(null, false, req.flash('error_msg', 'No user found'));
+        }
+        if(!user.validPassword(password)) {
+          return done(null, false, req.flash('error_msg',
+                                             'Invalid password'));
+        }
+        return done(null, user);
       });
-    }
-  ));
+    });
+  }));
 
   // Passport Local SignUp Strategy
   passport.use('local-signup', new LocalStrategy({
@@ -48,7 +47,8 @@ module.exports = function(passport) {
       User.findOne({'local.username': username}, function(err, user){
         if(err) { return done(err); }
         if(user){
-          return done(null, false, req.flash('error_msg', 'A user with these details already exists'));
+          return done(null, false, req.flash('error_msg',
+            'A user with these details already exists'));
         }
         if(!req.user) {
           let newUser = new User();
@@ -77,8 +77,10 @@ module.exports = function(passport) {
 
   passport.use(new FacebookStrategy({
     clientID: secrets.facebookAppId || '1860458620897454',
-    clientSecret: secrets.facebookAppSecret || '6525b5d5c375396668aa74938c0f08dd',
-    callbackURL: process.env.FACEBOOK_CALLBACK || 'http://localhost:3000/auth/facebook/callback',
+    clientSecret: secrets.facebookAppSecret ||
+      '6525b5d5c375396668aa74938c0f08dd',
+    callbackURL: process.env.FACEBOOK_CALLBACK ||
+      'http://localhost:3000/auth/facebook/callback',
     passReqToCallback: true
   },
   function(req, accessToken, refreshToken, profile, done) {
