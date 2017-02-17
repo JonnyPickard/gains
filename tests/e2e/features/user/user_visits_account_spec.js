@@ -12,6 +12,7 @@ module.exports = {
 
   'User can visit Account page successfully': function(browser) {
     browser
+    .click('.dropdown-toggle')
     .click('.account-link')
     .pause(1000)
     .assert.urlContains('/users/account')

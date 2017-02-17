@@ -9,6 +9,7 @@ module.exports = {
   before: function(browser) {
     signup(browser);
     browser
+      .click('.dropdown-toggle')
       .click('#logout')
       .assert.urlContains('/users/login');
   },
