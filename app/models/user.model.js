@@ -5,7 +5,7 @@ const bcrypt          = require('bcryptjs');
 const autoIncrement   = require('mongoose-auto-increment');
 
 // User Schema
-var UserSchema = new Schema({
+const UserSchema = new Schema({
   userId:     { default: 0 },
   avatarURL:  { type: String, default: '/images/blank-avatar.png' },
   local: {
@@ -39,15 +39,15 @@ UserSchema.methods = {
     return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
   },
 
-  validPassword: function(password) {
-    return bcrypt.compare(password, this.local.password);
+  validPassword: function(password, passwordHash, callback) {
+    bcrypt.compare(password, passwordHash, callback);
   },
 
-  getUserById: function(id, callback){
+  getUserById: function(id, callback) {
     UserModel.findById(id, callback);
   },
 
-  getUserByUserId: function(userId, callback){
+  getUserByUserId: function(userId, callback) {
     UserModel.findOne(userId, callback);
   }
 };
@@ -57,6 +57,6 @@ autoIncrement.initialize(mongoose.connection);
 UserSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'userId' } );
 
 // Exporting the User model
-var UserModel = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
 module.exports = UserModel;

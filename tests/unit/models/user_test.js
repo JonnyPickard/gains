@@ -1,36 +1,13 @@
-process.env.NODE_ENV = 'test';
-
-const dbCleaner  = require('../helpers/mongodb_cleaner');
+const config     = require('../../config/test.config.js');
 const chai       = require('chai');
 const expect     = chai.expect;
 const should     = chai.should();
 const User       = require('../../../app/models/user.model');
 
-describe('User', function() {
+describe('User', () => {
 
-  describe('#create()', function(){
-    it('should create a new user', function(done){
-      var user = {
-        local: {
-          username: 'testName',
-          email: 'testemail@email.com',
-          password: 'testPassword',
-        }
-      };
-
-      User.create(user, function(err, createdUser){
-        should.not.exist(err);
-        should.exist(createdUser);
-
-        expect(createdUser.local.username).to.equal('testName');
-        expect(createdUser.local.email).to.equal('testemail@email.com');
-        done();
-      });
-    });
-  });
-
-  describe('#hashPassword()', function(){
-    it('it return a hash of the password', function(done){
+  describe('#hashPassword()', () => {
+    it('it return a hash of the password', (done) => {
       var password = ('secret');
       var hashedPassword = new User().hashPassword(password);
       expect(password).not.to.equal(hashedPassword);
@@ -38,18 +15,29 @@ describe('User', function() {
     });
   });
 
-  // Pending untill mongoose promise library workaround found
-  describe('#validPassword()', function(){
-    xit('it successfully compare the raw and hashed passwords', function(){
+  describe('#validPassword()', () => {
+    it('it successfully compare the raw and hashed passwords', (done) => {
+      let user = new User();
       let password = ('secret');
-      let hashedPassword = new User().hashPassword(password);
+      let hashedPassword = user.hashPassword(password);
 
+      user.validPassword(password, hashedPassword, (err, result) => {
+        if (err) { throw err; }
+        expect(result).to.equal(true);
+        done();
+      });
     });
 
-    xit('it unsuccessfully compare a fake and hashed password', function(){
+    it('it unsuccessfully compare a fake and hashed password', (done) => {
+      let user = new User();
       let password = ('secret');
       let fakePassword = ('fakePassword');
 
+      user.validPassword(password, fakePassword, (err, result) => {
+        if (err) { throw err; }
+        expect(result).to.equal(false);
+        done();
+      });
     });
   });
 });

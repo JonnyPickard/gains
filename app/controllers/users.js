@@ -5,7 +5,7 @@ const passport = require('passport');
 const userModel = new User();
 
 // GET Register
-router.get('/register', function(req, res) {
+router.get('/register', (req, res) => {
   res.render('user/register');
 });
 
@@ -17,14 +17,14 @@ router.post('/register', passport.authenticate('local-signup', {
 }));
 
 // POST Logout
-router.post('/logout', function(req, res) {
+router.post('/logout', (req, res) => {
   req.logout();
   req.flash('success_msg', 'Successfully logged out');
   res.redirect('/users/login');
 });
 
 // GET Login
-router.get('/login', function(req, res) {
+router.get('/login', (req, res) => {
   req.flash('success_msg', 'Successfully logged in');
   res.render('user/login');
 });
@@ -37,9 +37,9 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 // GET Create form - After login via oauth
-router.get('/create', function(req, res){
+router.get('/create', (req, res) => {
   if (!req.session.username) {
-    res.render('user/create');
+    res.render('user/create', {msg: 'Create User form'});
   } else {
     req.flash('success_msg', 'Success');
     res.redirect('/');
@@ -47,16 +47,16 @@ router.get('/create', function(req, res){
 });
 
 // GET Account
-router.get('/account', function(req, res){
+router.get('/account', (req, res) => {
   res.render('user/account');
 });
 
-// GET User
-router.get('/user', function(req, res){
+// GET Username + avatarURL
+router.get('/user', (req, res) => {
   let userId = req.query.userId;
   let user = new User();
 
-  user.getUserByUserId({userId: userId}, function(err, user) {
+  user.getUserByUserId({userId: userId}, (err, user) => {
     res.setHeader('Content-Type', 'application/json');
     if(err) { throw err; }
     if(!user) {

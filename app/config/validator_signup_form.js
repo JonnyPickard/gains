@@ -1,7 +1,6 @@
 // Form validation on request body
-module.exports = function(request) {
+module.exports = (request) => {
   let req = request;
-
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
@@ -11,13 +10,9 @@ module.exports = function(request) {
   req.checkBody('email', 'Email is required').notEmpty();
   req.checkBody('email', 'Email is not valid').isEmail();
   req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('password2', 'Passwords do not match')
+    .equals(req.body.password);
 
   let errors = req.validationErrors();
-
-  if(errors) {
-    return errors;
-  } else {
-    return false;
-  }
-}
+  if(errors) { return errors; } else { return false; }
+};

@@ -1,17 +1,18 @@
-const config   = require('../../config/e2e.config.js');
+const config   = require('../../../config/test.config.js');
 const User     = require('../../../../app/models/user.model');
 const Photo     = require('../../../../app/models/photo.model');
 const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
-const DBCleaner = require('../../helpers/DB/cleanDB');
+const userDBCleaner = require('../../../helpers/clean_user_db_helper.js');
+const photoDBCleaner = require('../../../helpers/clean_photo_db_helper.js');
 
 module.exports = {
 
-  before: function(browser) {
+  before: (browser) => {
     signup(browser);
   },
 
-  'Photo upload is successful': function(browser) {
+  'Photo upload is successful': (browser) => {
     browser
     .click('.dropdown-toggle')
     .click('.upload-link')
@@ -31,12 +32,12 @@ module.exports = {
     .assert.containsText('.img-title', 'test_photo');
   },
 
-  afterEach: function(done) {
-    new DBCleaner(User, done);
-    new DBCleaner(Photo, done);
+  afterEach: () => {
+    userDBCleaner();
+    photoDBCleaner();
   },
 
-  after: function(browser) {
+  after: (browser) => {
     browser
       .end();
   }

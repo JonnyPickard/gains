@@ -44,3 +44,9 @@ body {
   height: 50%;
   box-shadow: 1px 1px 5px grey;
 }
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}

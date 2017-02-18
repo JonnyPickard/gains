@@ -6,26 +6,24 @@ const AWS      = require('aws-sdk');
 const S3_BUCKET = process.env.S3_BUCKET;
 
 // POST create avatar
-router.post('/upload', function(req, res, next) {
+router.post('/upload', (req, res, next) => {
   let userId = res.locals.user.userId;
-  console.log(req.body);
   let avatarURL = req.body.avatar_url;
 
-  User.findOne({'userId': userId}, function(err, user) {
+  User.findOne({'userId': userId}, (err, user) => {
     if(err) { throw(err); }
     if(!user) {
       req.flash('error_msg', 'No user found');
       res.redirect('/users/account');
     } else {
       user.avatarURL = avatarURL;
-      user.save(function(err) {
+      user.save((err) => {
         if(err) { throw err; }
         res.redirect('/users/account');
       });
     }
   });
 });
-
 
 // Ajax to S3 - Ideally need to set uid + user url
 router.get('/sign-s3', (req, res) => {

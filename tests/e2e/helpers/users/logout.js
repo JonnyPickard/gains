@@ -1,4 +1,4 @@
-module.exports = function logout(browser) {
+module.exports = (browser) => {
   browser
     .verify.elementPresent('a[href=#logout]')
     .click('a[name=logout]')

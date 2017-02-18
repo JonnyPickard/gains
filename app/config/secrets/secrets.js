@@ -6,4 +6,4 @@ module.exports = {
     clientSecret: process.env.GOOGLE_APP_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK || 'http://localhost:3000/auth/google/callback'
   }
-}
+};
