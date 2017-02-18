@@ -38,18 +38,29 @@ describe('User', () => {
     });
   });
 
-  // Pending untill mongoose promise library workaround found
   describe('#validPassword()', () => {
-    xit('it successfully compare the raw and hashed passwords', () => {
+    it('it successfully compare the raw and hashed passwords', (done) => {
+      let user = new User();
       let password = ('secret');
-      let hashedPassword = new User().hashPassword(password);
+      let hashedPassword = user.hashPassword(password);
 
+      user.validPassword(password, hashedPassword, (err, result) => {
+        if (err) { throw err; }
+        expect(result).to.equal(true);
+        done();
+      });
     });
 
-    xit('it unsuccessfully compare a fake and hashed password', () => {
+    it('it unsuccessfully compare a fake and hashed password', (done) => {
+      let user = new User();
       let password = ('secret');
       let fakePassword = ('fakePassword');
 
+      user.validPassword(password, fakePassword, (err, result) => {
+        if (err) { throw err; }
+        expect(result).to.equal(false);
+        done();
+      });
     });
   });
 });

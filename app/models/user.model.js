@@ -39,8 +39,8 @@ UserSchema.methods = {
     return bcrypt.hashSync(passwordRaw, bcrypt.genSaltSync(10));
   },
 
-  validPassword: function(password) {
-    return bcrypt.compare(password, this.local.password);
+  validPassword: function(password, passwordHash, callback) {
+    bcrypt.compare(password, passwordHash, callback);
   },
 
   getUserById: function(id, callback) {

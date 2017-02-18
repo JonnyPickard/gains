@@ -1,6 +1,6 @@
 module.exports = {
   'src_folders': [
-    'tests/e2e/features/user/user_edit_profile_information.js'
+    'tests/e2e/features'
   ],
   'output_folder': 'reports',
   'globals_path': './tests/e2e/config/global.js',

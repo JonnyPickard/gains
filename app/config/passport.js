@@ -23,11 +23,15 @@ module.exports = (passport) => {
         if(!user) {
           return done(null, false, req.flash('error_msg', 'No user found'));
         }
-        if(!user.validPassword(password)) {
-          return done(null, false, req.flash('error_msg',
-                                             'Invalid password'));
-        }
-        return done(null, user);
+        user.validPassword(password, user.local.password, (err, result) => {
+          if (err) { return done(err); }
+          if (result === false) {
+            return done(null, false, req.flash('error_msg',
+                                               'Invalid password'));
+          } else {
+            return done(null, user);
+          }
+        });
       });
     });
   }));
