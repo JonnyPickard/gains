@@ -1,4 +1,4 @@
-module.exports = function signup(browser) {
+module.exports = (browser) => {
   browser
     .url('http://localhost:3333/users/register')
     .waitForElementVisible('body', 1000)

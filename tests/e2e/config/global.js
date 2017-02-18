@@ -9,10 +9,10 @@ module.exports = {
      * @param results
      */
 
-    after: function(done) {
+    after: (done) => {
       this.error === true ? process.exit(1) : process.exit(0);
     },
-    reporter: function(results) {
+    reporter: (results) => {
         if ((typeof(results.failed) === 'undefined' || results.failed === 0) &&
         (typeof(results.error) === 'undefined' || results.error === 0)) {
             this.error = false;

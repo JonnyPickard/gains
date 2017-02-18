@@ -51,7 +51,7 @@ app.use(passport.session());
 
 // Express Validator settings
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
+  errorFormatter: (param, msg, value) => {
       var namespace  = param.split('.');
       var root       = namespace.shift();
       var formParam  = root;
@@ -78,7 +78,7 @@ const setGlobals    = require('./app/helpers/global_vars')(app);
 mongoose.connect(config.db);
 
 //This callback is triggered once the connection is established with MongoDB
-mongoose.connection.on('connected', function () {
+mongoose.connection.on('connected', () => {
   console.log('Mongoose default connection open to ' + config.db);
 });
 
@@ -89,7 +89,7 @@ const router        = require('./app/router/router')(app);
 const passportInit  = require('./app/config/passport.js')(passport);
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -99,10 +99,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
 app.listen(port, () => {
   console.log('Express App Listening on port: ' + port);
 });
-
 
 module.exports = app;

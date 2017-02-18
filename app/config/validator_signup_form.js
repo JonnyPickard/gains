@@ -1,5 +1,5 @@
 // Form validation on request body
-module.exports = function(request) {
+module.exports = (request) => {
   let req = request;
   let username = req.body.username;
   let email = req.body.email;

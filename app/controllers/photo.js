@@ -6,12 +6,12 @@ const AWS      = require('aws-sdk');
 const S3_BUCKET = process.env.S3_BUCKET;
 
 // GET Upload Photo
-router.get('/upload', function(req, res, next) {
+router.get('/upload', (req, res, next) => {
   res.render('photo/upload');
 });
 
 // POST create photo
-router.post('/upload', function(req, res, next) {
+router.post('/upload', (req, res, next) => {
   let userId = res.locals.user.userId;
   let photoName = req.body.photo_name;
   let photoURL = req.body.photo_url
@@ -20,7 +20,7 @@ router.post('/upload', function(req, res, next) {
                     userId: userId,
                  photo_url: photoURL },
 
-  function(err, photo) {
+  (err, photo) => {
     if(err) {
       console.log(err);
       throw err;

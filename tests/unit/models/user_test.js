@@ -6,10 +6,10 @@ const expect     = chai.expect;
 const should     = chai.should();
 const User       = require('../../../app/models/user.model');
 
-describe('User', function() {
+describe('User', () => {
 
-  describe('#create()', function(){
-    it('should create a new user', function(done){
+  describe('#create()', () => {
+    it('should create a new user', (done) => {
       var user = {
         local: {
           username: 'testName',
@@ -18,7 +18,7 @@ describe('User', function() {
         }
       };
 
-      User.create(user, function(err, createdUser){
+      User.create(user, (err, createdUser) => {
         should.not.exist(err);
         should.exist(createdUser);
 
@@ -29,8 +29,8 @@ describe('User', function() {
     });
   });
 
-  describe('#hashPassword()', function(){
-    it('it return a hash of the password', function(done){
+  describe('#hashPassword()', () => {
+    it('it return a hash of the password', (done) => {
       var password = ('secret');
       var hashedPassword = new User().hashPassword(password);
       expect(password).not.to.equal(hashedPassword);
@@ -39,14 +39,14 @@ describe('User', function() {
   });
 
   // Pending untill mongoose promise library workaround found
-  describe('#validPassword()', function(){
-    xit('it successfully compare the raw and hashed passwords', function(){
+  describe('#validPassword()', () => {
+    xit('it successfully compare the raw and hashed passwords', () => {
       let password = ('secret');
       let hashedPassword = new User().hashPassword(password);
 
     });
 
-    xit('it unsuccessfully compare a fake and hashed password', function(){
+    xit('it unsuccessfully compare a fake and hashed password', () => {
       let password = ('secret');
       let fakePassword = ('fakePassword');
 

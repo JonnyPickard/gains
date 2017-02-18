@@ -3,15 +3,15 @@ const User     = require('../../../../app/models/user.model');
 const Photo     = require('../../../../app/models/photo.model');
 const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
-const DBCleaner = require('../../helpers/DB/cleanDB');
+const dBCleaner = require('../../helpers/DB/cleanDB');
 
 module.exports = {
 
-  before: function(browser) {
+  before: (browser) => {
     signup(browser);
   },
 
-  'Photo upload is successful': function(browser) {
+  'Photo upload is successful': (browser) => {
     browser
     .click('.dropdown-toggle')
     .click('.upload-link')
@@ -31,12 +31,12 @@ module.exports = {
     .assert.containsText('.img-title', 'test_photo');
   },
 
-  afterEach: function(done) {
-    new DBCleaner(User, done);
-    new DBCleaner(Photo, done);
+  afterEach: (done) => {
+    dBCleaner(User, done);
+    dBCleaner(Photo, done);
   },
 
-  after: function(browser) {
+  after: (browser) => {
     browser
       .end();
   }

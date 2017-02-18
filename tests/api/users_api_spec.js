@@ -2,8 +2,8 @@ const config = require('../config/test_config.js');
 const test = require('tape');
 const request = require('supertest');
 const app = require('../../app');
-const CleanUserDB = require('./helpers/clean_user_db_helper.js');
-const CreateUser = require('./helpers/create_user.js');
+const cleanUserDB = require('./helpers/clean_user_db_helper.js');
+const createUser = require('./helpers/create_user.js');
 
 let user = {
   username: 'test_user',
@@ -18,7 +18,7 @@ test('Correctly returns the register html page', (t) => {
     .get('/users/register')
     .expect(200)
     .expect('Content-Type', /html/)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
     });
@@ -31,12 +31,11 @@ test('Correctly post user registration form info', (t) => {
     .send(user)
     .expect(302)
     .expect('Location', /\//)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
+      cleanUserDB();
     });
-
-  new CleanUserDB();
 });
 
 // POST Logout
@@ -45,7 +44,7 @@ test('Correctly post request user logout', (t) => {
     .post('/users/logout')
     .expect(302)
     .expect('Location', /login/)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
     });
@@ -53,19 +52,19 @@ test('Correctly post request user logout', (t) => {
 
 // Get Login
 test('Correctly post user login', (t) => {
-  new CreateUser();
+  createUser();
 
   request(app)
     .post('/users/login')
     .send(user)
     .expect(302)
     .expect('Location', /\//)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
+      cleanUserDB();
     });
 
-  new CleanUserDB();
 });
 
 // Get Create User
@@ -74,7 +73,7 @@ test('Correctly get users create form', (t) => {
     .get('/users/create')
     .expect(200)
     .expect('Content-Type', /html/)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
     });
@@ -86,7 +85,7 @@ test('Correctly get users account', (t) => {
     .get('/users/account')
     .expect(200)
     .expect('Content-Type', /html/)
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
     });
@@ -94,7 +93,7 @@ test('Correctly get users account', (t) => {
 
 //Get Username + avatarURL as json
 test('Correctly get username + avatar as json', (t) => {
-  new CreateUser();
+  createUser();
 
   request(app)
     .get('/users/user')
@@ -103,12 +102,12 @@ test('Correctly get username + avatar as json', (t) => {
     .expect('Content-Type', /application\/json/)
     .expect({ username: 'test_user',
       avatarURL: '/images/blank-avatar.png' })
-    .end(function (err, res) {
+    .end((err, res) => {
       t.error(err, 'No error');
       t.end();
+      cleanUserDB();
     });
 
-  new CleanUserDB();
 });
 
-test.onFinish(() => process.exit(0));
+test.onFinish(() => { process.exit(0);});
