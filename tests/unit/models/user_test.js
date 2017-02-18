@@ -1,33 +1,10 @@
-process.env.NODE_ENV = 'test';
-
-const dbCleaner  = require('../helpers/mongodb_cleaner');
+const config     = require('../../config/test.config.js');
 const chai       = require('chai');
 const expect     = chai.expect;
 const should     = chai.should();
 const User       = require('../../../app/models/user.model');
 
 describe('User', () => {
-
-  describe('#create()', () => {
-    it('should create a new user', (done) => {
-      var user = {
-        local: {
-          username: 'testName',
-          email: 'testemail@email.com',
-          password: 'testPassword',
-        }
-      };
-
-      User.create(user, (err, createdUser) => {
-        should.not.exist(err);
-        should.exist(createdUser);
-
-        expect(createdUser.local.username).to.equal('testName');
-        expect(createdUser.local.email).to.equal('testemail@email.com');
-        done();
-      });
-    });
-  });
 
   describe('#hashPassword()', () => {
     it('it return a hash of the password', (done) => {

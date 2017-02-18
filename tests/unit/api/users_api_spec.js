@@ -1,8 +1,8 @@
-const config = require('../config/test_config.js');
+const config = require('../../config/test.config.js');
 const test = require('tape');
 const request = require('supertest');
-const app = require('../../app');
-const cleanUserDB = require('./helpers/clean_user_db_helper.js');
+const app = require('../../../app');
+const cleanUserDB = require('../../helpers/clean_user_db_helper.js');
 const createUser = require('./helpers/create_user.js');
 
 let user = {

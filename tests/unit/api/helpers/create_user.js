@@ -1,4 +1,4 @@
-const User = require('../../../app/models/user.model.js');
+const User = require('../../../../app/models/user.model.js');
 
 module.exports = () => {
   let newUser = new User();
@@ -10,7 +10,6 @@ module.exports = () => {
 
   newUser.save((err) => {
     if(err) { throw err; }
-    console.log('Create User');
     return (null, newUser);
   });
 };

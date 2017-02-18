@@ -1,9 +1,10 @@
-const config   = require('../../config/e2e.config.js');
+const config   = require('../../../config/test.config.js');
 const User     = require('../../../../app/models/user.model');
 const Photo     = require('../../../../app/models/photo.model');
 const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
-const dBCleaner = require('../../helpers/DB/cleanDB');
+const userDBCleaner = require('../../../helpers/clean_user_db_helper.js');
+const photoDBCleaner = require('../../../helpers/clean_photo_db_helper.js');
 
 module.exports = {
 
@@ -31,9 +32,9 @@ module.exports = {
     .assert.containsText('.img-title', 'test_photo');
   },
 
-  afterEach: (done) => {
-    dBCleaner(User, done);
-    dBCleaner(Photo, done);
+  afterEach: () => {
+    userDBCleaner();
+    photoDBCleaner();
   },
 
   after: (browser) => {

@@ -1,8 +1,8 @@
-const config   = require('../../config/e2e.config.js');
+const config   = require('../../../config/test.config.js');
 const User     = require('../../../../app/models/user.model');
 const server   = require('../../../../app');
 const signup   = require('../../helpers/users/signup.js');
-const dBCleaner = require('../../helpers/DB/cleanDB');
+const userDBCleaner = require('../../../helpers/clean_user_db_helper.js');
 
 module.exports = {
 
@@ -25,8 +25,8 @@ module.exports = {
     .assert.title('index');
   },
 
-  afterEach: (done) => {
-    dBCleaner(User, done);
+  afterEach: () => {
+    userDBCleaner();
   },
 
   after: (browser) => {
