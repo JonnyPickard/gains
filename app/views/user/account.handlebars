@@ -22,16 +22,17 @@
   <p>
     <strong>Connect to Facebook account</strong>
   </p>
-  <a href="/auth/connect-facebook" class="link link-primary"><img src="/images/facebook-login-blue.png"  style="width:150px;height:35px;border:0;"></a>
+  <a href="/auth/connect-facebook" class="col-lg-4 link link-primary"><img class="oauth-img" src="/images/facebook-login-blue.png"></a>
 {{/unless}}
 {{#unless user.google.name }}
 <hr />
   <p>
     <strong>Connect to Google account</strong>
   </p>
-  <a href="/auth/connect-google" class="link link-primary"><img src="/images/google-login-red.png"  style="width:200px;height:31px;border:0;"></a>
+  <a href="/auth/connect-google" class="col-lg-4 link link-primary"><img class="oauth-img" src="/images/google-login-red.png"></a>
 {{/unless}}
 {{#unless user.local.username}}
   <script>location.replace("/users/login");</script>
 {{/unless}}
+
 <script src="/javascripts/s3_avatar_ajax.js"></script>

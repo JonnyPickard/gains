@@ -7,6 +7,6 @@ module.exports = function signup(browser) {
     .setValue('input[name=password]', 'password')
     .setValue('input[name=password2]', 'password')
     .setValue('input[name=email]', 'test@test.com')
-    .click('.submit')
+    .click('.submit-register')
     .pause(1000);
 };

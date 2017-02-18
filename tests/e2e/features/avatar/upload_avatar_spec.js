@@ -12,6 +12,7 @@ module.exports = {
 
   'Avatar upload is successful': function(browser) {
     browser
+    .click('.dropdown-toggle')
     .click('.account-link')
     .pause(1000)
     .assert.urlContains('/account')
