@@ -9,6 +9,10 @@ http://gains-app.herokuapp.com
 About
 -----
 
+This is an example of a monolithic application. 
+
+> Note: I may refactor this into seperate containers/ microservices and create a seperate front end.
+
 This is an Instagram clone for gym goers built with NodeJS, ExpresssJS and Mongodb. Tested with NightwatchJS, Selenium Webdriver, Mocha and Chai. CI with Travis, Hound and Heroku.
 
 Feature Checklist
